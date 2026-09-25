@@ -1,0 +1,72 @@
+name: Crawl papers
+on:
+  schedule:
+    # UTC 22:00 / 04:00 / 10:00 = Asia/Shanghai 06:00 / 12:00 / 18:00.
+    - cron: '0 4,10,22 * * *'
+  workflow_dispatch:
+    inputs:
+      period:
+        type: choice
+        options: [all, daily, weekly, monthly]
+        default: all
+      target:
+        description: 'Optional target (requires a single period)'
+        type: string
+      notify:
+        description: 'Optional channel'
+        type: choice
+        options: [none, feishu, wechat, telegram]
+        default: none
+      summarize:
+        description: 'Generate Chinese summaries (requires model credentials)'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: paper-radar-data
+  cancel-in-progress: false
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: '0.9.30'
+          python-version: '3.12'
+      - run: uv sync --frozen --no-dev
+      - name: Crawl
+        env:
+          INPUT_PERIOD: ${{ inputs.period || 'all' }}
+          INPUT_TARGET: ${{ inputs.target }}
+          NOTIFY: ${{ inputs.notify || vars.NOTIFY_CHANNEL || 'none' }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SUMMARIZE: ${{ github.event_name == 'workflow_dispatch' && inputs.summarize || github.event_name == 'schedule' && vars.SUMMARIZE_ENABLED == 'true' }}
+          SUMMARY_PROVIDER: ${{ vars.SUMMARY_PROVIDER || 'deepseek' }}
+          SUMMARY_MODEL: ${{ vars.SUMMARY_MODEL }}
+          SUMMARY_BASE_URL: ${{ vars.SUMMARY_BASE_URL }}
+          API_KEY: ${{ secrets.API_KEY }}
+        shell: bash
+        run: |
+          args=(crawl huggingface "$INPUT_PERIOD")
+          if [[ -n "$INPUT_TARGET" ]]; then args+=(--target "$INPUT_TARGET"); fi
+          if [[ "$NOTIFY" != none ]]; then args+=(--notify "$NOTIFY"); fi
+          if [[ "$SUMMARIZE" == true ]]; then args+=(--summarize); fi
+          uv run --no-dev paper-radar "${args[@]}"
+      - name: Commit saved data, including successful tasks from a partial run
+        if: ${{ always() && !cancelled() }}
+        shell: bash
+        run: |
+          if [[ ! -d data ]]; then exit 0; fi
+          git add -- data
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'data: update paper rankings'
+          git push
