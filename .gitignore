@@ -5,6 +5,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 dist/
+/data/
 *.egg-info/
 .env
 .env.*

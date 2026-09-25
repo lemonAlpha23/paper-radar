@@ -17,6 +17,26 @@ def test_invalid_tasks_fail_before_network(capsys):
     assert "Invalid daily target" in capsys.readouterr().err
 
 
+def test_default_notification_has_no_limit(monkeypatch, tmp_path):
+    from paper_radar.core.models import CrawlResult
+
+    limits = []
+    monkeypatch.setattr(
+        "paper_radar.cli.CrawlService.run", lambda self, task: CrawlResult([], [], "")
+    )
+    monkeypatch.setattr("paper_radar.cli.load_notifiers", lambda: {"test": lambda http: object()})
+    monkeypatch.setattr(
+        "paper_radar.cli.NotificationService.send",
+        lambda self, task, result, top, **kwargs: limits.append(top),
+    )
+    args = ["crawl", "huggingface", "all", "--notify", "test", "--data-dir", str(tmp_path)]
+    assert main(args) == 0
+    assert limits == [None, None, None]
+    limits.clear()
+    assert main([*args, "--top", "5"]) == 0
+    assert limits == [5, 5, 5]
+
+
 def test_all_attempts_remaining_tasks_after_failure(monkeypatch, tmp_path, capsys):
     from paper_radar.core.exceptions import RadarError
     from paper_radar.core.models import CrawlResult

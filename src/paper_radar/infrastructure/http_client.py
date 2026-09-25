@@ -67,10 +67,19 @@ class HttpClient:
             time.sleep(delay)
         raise AssertionError("Unreachable retry state")
 
-    def post_json(self, url: str, payload: dict[str, Any]) -> dict[str, Any]:
+    def post_json(
+        self,
+        url: str,
+        payload: dict[str, Any],
+        *,
+        files: dict[str, tuple[str, bytes, str]] | None = None,
+    ) -> dict[str, Any]:
         # A timeout may happen after delivery. Retrying a POST could send duplicate messages.
         try:
-            response = self.client.post(url, json=payload)
+            if files is None:
+                response = self.client.post(url, json=payload)
+            else:
+                response = self.client.post(url, data=payload, files=files)
             response.raise_for_status()
             body = response.json()
         except (httpx.HTTPError, ValueError):

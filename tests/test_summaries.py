@@ -61,6 +61,11 @@ def test_deepseek_request_and_chinese_response():
     assert body["model"] == "deepseek-flash"
     assert body["thinking"] == {"type": "disabled"}
     assert body["response_format"] == {"type": "json_object"}
+    instructions = body["messages"][0]
+    assert instructions["role"] == "system"
+    assert "没有技术背景" in instructions["content"]
+    assert "不出现专业术语、英文缩写" in instructions["content"]
+    assert "三个字段必须在同一个对象内" in instructions["content"]
     assert json.loads(body["messages"][1]["content"]) == {
         "title": PAPER.title,
         "abstract": PAPER.abstract,

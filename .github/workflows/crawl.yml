@@ -39,7 +39,10 @@ jobs:
       - run: uv sync --frozen --no-dev
       - name: Crawl
         env:
-          INPUT_PERIOD: ${{ inputs.period || 'all' }}
+          # 抓取周期：daily=日榜，weekly=周榜，monthly=月榜，all=全部。
+          # 手动运行使用页面选择的 period；定时运行使用右侧默认值（当前为 all）。
+          # 如需定时只抓日榜，将下面的 'all' 改为 'daily' 即可。
+          INPUT_PERIOD: ${{ inputs.period || 'daily' }}
           INPUT_TARGET: ${{ inputs.target }}
           NOTIFY: ${{ inputs.notify || vars.NOTIFY_CHANNEL || 'none' }}
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}

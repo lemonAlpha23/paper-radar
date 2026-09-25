@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from paper_radar.config.settings import Settings
 from paper_radar.core.exceptions import RadarError
 from paper_radar.core.models import Paper
+from paper_radar.core.summaries import SummaryResult
 from paper_radar.core.tasks import CrawlTask, Period, default_target
 from paper_radar.infrastructure.http_client import HttpClient
 from paper_radar.notifications.loader import load_notifiers
@@ -28,7 +29,7 @@ def summarize_papers(
     model: SummaryModel,
     data_dir: Path,
     limit: int | None,
-) -> bool:
+) -> SummaryResult:
     result = SummaryService(model).run(papers, limit)
     path = SummaryJsonStorage(data_dir).save(task, fetched_at, result)
     counts = {
@@ -36,7 +37,7 @@ def summarize_papers(
         for status in ("success", "failed", "skipped")
     }
     print(f"{task.task_id}: summaries {counts}; saved {path}")
-    return result.has_failures
+    return result
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -50,7 +51,7 @@ def main(argv: list[str] | None = None) -> int:
     crawl.add_argument("period", choices=[*Period, "all"])
     crawl.add_argument("--target", help="YYYY-MM-DD, YYYY-Www, or YYYY-MM")
     crawl.add_argument("--notify", action="append", default=[], metavar="CHANNEL")
-    crawl.add_argument("--top", type=int, default=10)
+    crawl.add_argument("--top", type=int, help="Limit notification papers (default all)")
     crawl.add_argument("--data-dir", type=Path)
     crawl.add_argument("--summarize", action="store_true", help="Generate Chinese summaries")
     summarize = commands.add_parser("summarize", help="Summarize an existing crawl JSON snapshot")
@@ -91,13 +92,13 @@ def main(argv: list[str] | None = None) -> int:
                     model,
                     args.data_dir or settings.data_dir,
                     args.summary_limit,
-                )
+                ).has_failures
             )
         sources = load_sources()
         notifiers = load_notifiers()
         if args.source not in sources:
             raise RadarError(f"Unknown source: {args.source}")
-        if args.top < 1:
+        if args.top is not None and args.top < 1:
             raise RadarError("--top must be positive")
         if args.period == "all" and args.target:
             raise RadarError("--target requires one period, not all")
@@ -126,8 +127,9 @@ def main(argv: list[str] | None = None) -> int:
             try:
                 result = service.run(task)
                 print(f"{task.task_id}: saved {len(result.papers)} papers")
+                summaries = None
                 if model is not None:
-                    failed |= summarize_papers(
+                    summaries = summarize_papers(
                         task,
                         result.fetched_at,
                         result.papers,
@@ -135,8 +137,9 @@ def main(argv: list[str] | None = None) -> int:
                         args.data_dir or settings.data_dir,
                         args.summary_limit,
                     )
+                    failed |= summaries.has_failures
                 if args.notify:
-                    notification.send(task, result, args.top)
+                    notification.send(task, result, args.top, summaries=summaries)
             except (RadarError, ValueError, OSError) as exc:
                 failed = True
                 print(f"{task.task_id}: {exc}", file=sys.stderr)

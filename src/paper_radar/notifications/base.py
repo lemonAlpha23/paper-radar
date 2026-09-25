@@ -1,4 +1,5 @@
 import os
+import time
 from abc import ABC, abstractmethod
 from typing import ClassVar
 from urllib.parse import urlsplit
@@ -30,3 +31,9 @@ class Notifier(ABC):
 
     @abstractmethod
     def send(self, message: str) -> None: ...
+
+    def send_batch(self, messages: list[str]) -> None:
+        for index, message in enumerate(messages):
+            if index:
+                time.sleep(3)  # Group robots allow 20 messages per minute.
+            self.send(message)
