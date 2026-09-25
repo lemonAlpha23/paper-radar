@@ -1,6 +1,6 @@
 # Paper Radar
 
-抓取 Hugging Face 日榜、周榜和月榜，用大白话生成中文介绍，并推送到 Telegram、飞书或企业微信。
+抓取 Hugging Face Daily Paper日榜、周榜和月榜，用大白话生成中文介绍，并推送到 Telegram、飞书或企业微信。
 
 ## 快速开始
 
