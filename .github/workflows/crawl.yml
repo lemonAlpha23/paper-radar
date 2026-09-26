@@ -10,7 +10,7 @@ on:
         options: [all, daily, weekly, monthly]
         default: all
       target:
-        description: 'Optional target (requires a single period)'
+        description: 'Optional target (single period only; daily defaults to yesterday)'
         type: string
       notify:
         description: 'Optional channel'

@@ -1,3 +1,7 @@
+from datetime import datetime
+
+import pytest
+
 from paper_radar.cli import main
 
 
@@ -15,6 +19,53 @@ def test_invalid_tasks_fail_before_network(capsys):
     assert "requires one period" in capsys.readouterr().err
     assert main(["crawl", "huggingface", "daily", "--target", "../escape"]) == 1
     assert "Invalid daily target" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize(
+    "today,expected",
+    [
+        (datetime(2026, 9, 26), ["2026-09-25", "2026-W39", "2026-09"]),
+        (datetime(2026, 1, 1), ["2025-12-31", "2026-W01", "2026-01"]),
+        (datetime(2024, 3, 1), ["2024-02-29", "2024-W09", "2024-03"]),
+    ],
+)
+def test_default_targets_and_explicit_daily_override(monkeypatch, tmp_path, today, expected):
+    from paper_radar.config.settings import Settings
+    from paper_radar.core.models import CrawlResult
+
+    class FixedDatetime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            assert str(tz) == "Asia/Shanghai"
+            return today.replace(tzinfo=tz)
+
+    tasks = []
+
+    def run(self, task):
+        tasks.append(task)
+        return CrawlResult([], [], "")
+
+    monkeypatch.setattr("paper_radar.cli.datetime", FixedDatetime)
+    monkeypatch.setattr("paper_radar.cli.Settings.from_env", lambda: Settings())
+    monkeypatch.setattr("paper_radar.cli.CrawlService.run", run)
+    assert main(["crawl", "huggingface", "all", "--data-dir", str(tmp_path)]) == 0
+    assert [task.target for task in tasks] == expected
+    tasks.clear()
+    assert (
+        main(
+            [
+                "crawl",
+                "huggingface",
+                "daily",
+                "--target",
+                "2026-09-26",
+                "--data-dir",
+                str(tmp_path),
+            ]
+        )
+        == 0
+    )
+    assert [task.target for task in tasks] == ["2026-09-26"]
 
 
 def test_default_notification_has_no_limit(monkeypatch, tmp_path):

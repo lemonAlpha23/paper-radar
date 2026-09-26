@@ -26,7 +26,11 @@ def parse(html: str, task: CrawlTask, observed_at: datetime | None = None) -> Cr
         # HF's weekly payload uses the Sunday preceding the ISO week's Monday.
         if task.period == Period.WEEKLY:
             page_date += timedelta(days=1)
-        actual_target = default_target(task.period, page_date)
+        actual_target = (
+            page_date.isoformat()
+            if task.period == Period.DAILY
+            else default_target(task.period, page_date)
+        )
         if actual_target != task.target:
             raise RadarError(f"Requested {task.target}, but Hugging Face returned {actual_target}")
         entries = payload["dailyPapers"]

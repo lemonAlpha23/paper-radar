@@ -1,5 +1,7 @@
 # Paper Radar
 
+> **日榜日期说明：** 由于时差，Hugging Face 的当天日榜可能尚未发布，因此默认抓取北京时间昨天的数据。例如，北京时间 9 月 26 日运行时，会抓取 9 月 25 日的日榜。此规则适用于 GitHub Actions 定时运行和手动运行；周榜、月榜仍默认抓取本周、本月的数据。
+
 抓取 Hugging Face Daily Paper日榜、周榜和月榜，用大白话生成中文介绍，并推送到 Telegram、飞书或企业微信。
 
 **架构亮点：插件式扩展 + 自动扫包发现。** 这里借鉴了ioc 的思想 ，数据来源、总结模型和通知渠道通过统一接口接入，程序自动扫描对应 Python 包，发现具体实现，无需手动维护注册列表。新增插件时，只需实现对应接口、设置唯一名称并添加 `__init__.py`，即可被发现并按配置选用。
@@ -29,7 +31,7 @@ TELEGRAM_CHAT_ID=你的聊天ID
 
 `SUMMARY_MODEL` 留空使用项目默认模型 `deepseek-flash`，其余配置通常保持默认即可。
 
-**抓取今天的论文 → 中文介绍 → Telegram 推送：**
+**抓取昨天的论文 → 中文介绍 → Telegram 推送：**
 
 ```sh
 uv run paper-radar crawl huggingface daily --summarize --notify telegram
@@ -56,7 +58,7 @@ uv run paper-radar crawl huggingface daily --summarize --summary-limit 3
 uv run paper-radar summarize "data/processed/papers/来源/周期/日期/快照.json"
 ```
 
-不指定日期时使用北京时间。当源站尚未发布对应榜单时，程序会报错，不会把旧榜单当作今天的数据。
+不指定日期时，按配置时区（默认北京时间）抓取昨天的日榜、本周的周榜和本月的月榜；Actions 定时和手动运行均使用这一规则。可通过 `--target` 显式指定日期。当源站尚未发布对应榜单时，程序仍会报错，避免把其他日期的榜单存入目标日期。
 
 ## 总结与推送
 

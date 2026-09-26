@@ -1,6 +1,6 @@
 import re
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
 from enum import StrEnum
 
 
@@ -13,7 +13,7 @@ class Period(StrEnum):
 def default_target(period: Period, today: date) -> str:
     match period:
         case Period.DAILY:
-            return today.isoformat()
+            return (today - timedelta(days=1)).isoformat()
         case Period.WEEKLY:
             year, week, _ = today.isocalendar()
             return f"{year}-W{week:02d}"

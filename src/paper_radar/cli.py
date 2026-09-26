@@ -49,7 +49,10 @@ def main(argv: list[str] | None = None) -> int:
     crawl = commands.add_parser("crawl", help="Fetch and save a ranking")
     crawl.add_argument("source")
     crawl.add_argument("period", choices=[*Period, "all"])
-    crawl.add_argument("--target", help="YYYY-MM-DD, YYYY-Www, or YYYY-MM")
+    crawl.add_argument(
+        "--target",
+        help="YYYY-MM-DD, YYYY-Www, or YYYY-MM (default: yesterday/current week/current month)",
+    )
     crawl.add_argument("--notify", action="append", default=[], metavar="CHANNEL")
     crawl.add_argument("--top", type=int, help="Limit notification papers (default all)")
     crawl.add_argument("--data-dir", type=Path)
