@@ -1,8 +1,10 @@
 name: Crawl papers
 on:
   schedule:
-    # UTC 22:00 / 04:00 / 10:00 = Asia/Shanghai 06:00 / 12:00 / 18:00.
-    - cron: '0 4,10,22 * * *'
+    # Separate entries identify the scheduled time in diagnostic logs.
+    - cron: '0 22 * * *' # Asia/Shanghai 06:00
+    - cron: '0 4 * * *'  # Asia/Shanghai 12:00
+    - cron: '0 10 * * *' # Asia/Shanghai 18:00
   workflow_dispatch:
     inputs:
       period:
@@ -31,6 +33,28 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Print scheduling diagnostics
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          COMMIT_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          echo "event=$EVENT_NAME"
+          echo "schedule=${SCHEDULE:-not applicable (manual run)}"
+          case "$SCHEDULE" in
+            '0 22 * * *') planned_time='06:00' ;;
+            '0 4 * * *') planned_time='12:00' ;;
+            '0 10 * * *') planned_time='18:00' ;;
+            *) planned_time='not applicable' ;;
+          esac
+          echo "planned_beijing_time=$planned_time"
+          echo "run_id=$RUN_ID attempt=$RUN_ATTEMPT"
+          echo "commit=$COMMIT_SHA"
+          echo "utc=$(date -u '+%Y-%m-%d %H:%M:%S %Z')"
+          echo "beijing=$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S %Z')"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
