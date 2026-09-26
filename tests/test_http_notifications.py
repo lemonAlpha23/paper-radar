@@ -184,6 +184,34 @@ def test_telegram_batch_is_one_complete_delivery(message, monkeypatch):
         client.close()
 
 
+def test_telegram_html_has_clickable_paper_links(monkeypatch):
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "123:secret")
+    monkeypatch.setenv("TELEGRAM_CHAT_ID", "456")
+    requests = []
+
+    def respond(request):
+        requests.append(request)
+        return httpx.Response(200, json={"ok": True})
+
+    client = HttpClient(Settings(), transport=httpx.MockTransport(respond))
+    try:
+        load_notifiers()["telegram"](client).send(
+            "https://arxiv.org/abs/2609.28654\n"
+            'https://example.com/?a=1&b="test"\n'
+            "javascript:alert(1)\n<script>alert(1)</script>\n" + "中" * 4097
+        )
+        assert len(requests) == 1
+        assert requests[0].url.path.endswith("/sendDocument")
+        report = requests[0].content.decode("utf-8")
+        assert '<a href="https://arxiv.org/abs/2609.28654"' in report
+        assert 'href="https://example.com/?a=1&amp;b=&quot;test&quot;"' in report
+        assert 'target="_blank" rel="noopener noreferrer"' in report
+        assert 'href="javascript:' not in report
+        assert "<script>" not in report
+    finally:
+        client.close()
+
+
 def test_telegram_long_report_rejection_is_not_retried(monkeypatch):
     monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "123:secret")
     monkeypatch.setenv("TELEGRAM_CHAT_ID", "456")

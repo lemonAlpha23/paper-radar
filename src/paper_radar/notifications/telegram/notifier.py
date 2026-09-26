@@ -41,6 +41,16 @@ class TelegramNotifier(Notifier):
                 },
             )
         else:
+            # Paper URLs occupy their own line; keep the already-escaped text safe in HTML.
+            formatted = re.sub(
+                r"^https?://[^\s<>]+$",
+                lambda match: (
+                    f'<a href="{match.group(0)}" target="_blank" rel="noopener noreferrer">'
+                    f"{match.group(0)}</a>"
+                ),
+                formatted,
+                flags=re.MULTILINE,
+            )
             report = (
                 '<!doctype html><html lang="zh-CN"><meta charset="utf-8">'
                 '<meta name="viewport" content="width=device-width, initial-scale=1">'
