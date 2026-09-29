@@ -1,0 +1,1240 @@
+{
+  "schema_version": 2,
+  "task": {
+    "source": "huggingface",
+    "period": "daily",
+    "target": "2026-09-28"
+  },
+  "fetched_at": "2026-09-29T18:30:16.854427+08:00",
+  "papers": [
+    {
+      "canonical_id": "arxiv:2609.31620",
+      "title": "FuseReg: Regularizing Layer Fusion Mitigates the Reconstruction-Generation Gap in Representation Autoencoders",
+      "authors": [
+        "Hongyang Du",
+        "Yunfei Xie",
+        "Junjie Ye",
+        "Jiawei Yang",
+        "Xiaoyan Cong",
+        "Haodong Zhang",
+        "Yongchao Huang",
+        "Haiyu Wu",
+        "Zongxia Li",
+        "Shihang Gui",
+        "Dawei Liu",
+        "Runhao Li",
+        "Jingcheng Ni",
+        "Chen Wei",
+        "Randall Balestriero",
+        "Yue Wang"
+      ],
+      "abstract": "Representation autoencoders (RAEs) reuse features from a pretrained visual encoder as reconstruction and diffusion latents, integrating strong visual representations into image generation. However, RAEs still need to decide which encoder layers form the shared latent space for the generator and pixel decoder. This choice involves a trade-off. Shallower layers tend to preserve fine pixel details better, while deeper layers tend to yield better generation metrics. A fixed heuristic layer fusion therefore couples two stages that benefit from different information. We introduce FuseReg, which replaces heuristic feature selection with training over random subsets of encoder layers. We theoretically analyze the underlying mechanism: subset sampling explicitly penalizes sensitivity to cross-layer disagreement. On ImageNet-256 with DINOv3-L, a single FuseReg decoder reconstructs from full, sparse, and single-layer fusions without retraining, achieving higher PSNR than decoders specialized to fixed fusions. This flexibility also benefits generation: decoder replacement alone reduces unguided gFID by 27% with an unchanged RAEv2 DiT-XL generator. The same regularization principle extends to diffusion training, with joint regularization of both stages reducing unguided gFID by 29% on DiT-Base. These results show that training downstream models for layer-fusion robustness narrows the reconstruction-generation gap without modifying the pretrained encoder.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.31620"
+    },
+    {
+      "canonical_id": "arxiv:2609.26333",
+      "title": "Disaggregated Quantization: Specializing LLM Prefill and Decode",
+      "authors": [
+        "Andrei Panferov",
+        "Maximilian Kleinegger",
+        "Sweta Priyadarshi",
+        "Tijmen Blankevoort",
+        "Dan Alistarh"
+      ],
+      "abstract": "Prefill and decode reward different approaches to quantization: low-precision arithmetic accelerates prompt processing, while compact weights reduce memory traffic during generation. We propose \"disaggregated quantization\" (DQ), which specializes computation formats, weights and storage placement to both of these phases. On Qwen 3 and Gemma 3, removing activation quantization specifically on decode improves accuracy on decode-heavy tasks without increasing inference cost. Training separate compute-native prefill weights accelerates prompt processing relative to weight-only inference while matching or exceeding its accuracy at 2-3-bit decode on both decode-heavy and prefill-heavy tasks. With released Qwen3.8-27B GGUF decoders, training an NVFP4 prefiller improves 1-bit accuracy by 32.5 points on MMLU-Pro and 35.3 on MMMU-Pro without modifying the decode checkpoint. To accommodate the additional checkpoint on a single device, offloaded disaggregated prefill (ODP) streams its weights from SSD, amortizing loading over prompt length. On the same 27B model, ODP delivers a 1.78x time-to-first-token speedup over the weight-only baseline at 8K prompt length in llama.cpp. We evaluate accuracy under disaggregated serving in vLLM and further validate shared-weight format disaggregation through post-training quantization on models up to 2.8T parameters.",
+      "published_at": "2026-09-22T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.26333"
+    },
+    {
+      "canonical_id": "arxiv:2609.18703",
+      "title": "RayOrch: Programming and Executing Lineage-Controlled Multi-Grain Dataflows for Foundation-Model Data Preparation",
+      "authors": [
+        "Xiaochen Ma",
+        "Zimo Meng",
+        "Junzhu Liang",
+        "Youhe Jiang",
+        "Yue Cheng",
+        "Hao Liang",
+        "Bohan Zeng",
+        "Dengchun Li",
+        "Lu Ma",
+        "Zhengyang Zhao",
+        "Zhen Hao Wong",
+        "Runming He",
+        "Meiyi Qiang",
+        "Jiangtao Guan",
+        "Binhang Yuan",
+        "Wentao Zhang"
+      ],
+      "abstract": "Preparing high quality training data for foundation models requires scalable pipelines that transform heterogeneous documents and videos into structured records. Such pipelines expand each parent item into an ordered and input dependent sequence of children, whose counts may be long tailed. GPUs should batch children across parents while preserving parent relationships, child order, completion status, and result routing. Existing systems either hide parallelism behind coarse grained jobs or expose flat records that force applications to manage lineage and regrouping. We present RayOrch, a programming model and distributed execution engine that preserves parent child relations throughout execution. Programs declare ordered variable cardinality expansions and matching gathers. The compiler validates each pair, while the runtime records child membership, immediate parents, immutable ordinals, and terminal states. Per Call FIFO Ready Queues batch ready children across parents. Gathers reconstruct results from declared membership and ordinals rather than batch boundaries or completion order. Parents can advance as soon as all required children become terminal. Typed parent scoped failures suppress undispatched siblings of the failed parent while allowing unrelated parents to continue. On NVIDIA H20 GPUs, RayOrch achieves 15.14 times speedup when scaling MinerU from 4 to 64 GPUs and 7.82 times speedup when scaling a video pipeline from 8 to 64 GPUs. It reduces end to end time by 13.1 percent versus Ray Data and 29.0 percent versus Daft on MinerU, and by 16.0 percent versus Ray Data on Docling. Code available at https://github.com/OpenDCAI/RayOrch .",
+      "published_at": "2026-09-16T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.18703"
+    },
+    {
+      "canonical_id": "arxiv:2609.31093",
+      "title": "Block Sparse Attention with Log-Linear Complexity",
+      "authors": [
+        "Bohao Tang",
+        "Zhen Qin",
+        "Yuqi Pan",
+        "Zheng Li",
+        "Pengfei Liu"
+      ],
+      "abstract": "Scaling language models to long contexts is limited by the quadratic cost of self-attention. Block sparse attention offers an efficient alternative, but selecting the retained blocks remains a bottleneck. Conventional block selection requires scoring all query-block pairs and therefore remains quadratic in sequence length. To address this issue, we propose PISA, a block-sparse attention mechanism that employs a pyramid Top-K selection strategy. The main idea is to gradually narrow down the candidates across different levels, making it more efficient to find the most relevant keys. Specifically, we construct a coarse-to-fine hierarchy of keys and perform selection from the coarsest level. At each level, LogSumExp scoring is applied to a bounded candidate set to select candidates for the next finer level, continuing until the finest level is reached. Through pooling, we construct O(log N) levels of keys, yielding an overall complexity of O(Nlog N), where N denotes the sequence length. We develop hardware-aware Triton kernels for both training and inference, fusing hierarchical routing and LogSumExp scoring without materializing the query-key score matrix. We further evaluate our method on language modeling tasks. Compared with the baseline, our method achieves comparable performance on benchmarks such as commonsense reasoning while delivering better results on retrieval tasks.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.31093"
+    },
+    {
+      "canonical_id": "arxiv:2609.31394",
+      "title": "InternW0-Δ: A World Action Model Bridging Predictive Dynamics and Actions with 20K+ Hours of Open Data",
+      "authors": [
+        "Xingyu Miao",
+        "Zizun Li",
+        "Baole Fang",
+        "Kaiwen Song",
+        "Tenghui Wang",
+        "Hanxue Zhang",
+        "Yating Wang",
+        "Xudong Li",
+        "Yuping He",
+        "Xueyuan Wei",
+        "Chao Gao",
+        "Xijie Yang",
+        "Yingxiang Xu",
+        "Kerui Ren",
+        "Wenqi Guo",
+        "Jianjun Zhou",
+        "Xinzhe Wang",
+        "Weiguang Zhao",
+        "Ni Yang",
+        "Zetao Cai",
+        "Yufei Xue",
+        "Hengjie Li",
+        "Zeyu He",
+        "Yuanzhen Zhou",
+        "Rong Fu",
+        "Jianyang Zhang",
+        "Siwei Cui",
+        "Fuxian Huang",
+        "Yunsong Zhou",
+        "Xing Gao",
+        "Yifei Yao",
+        "Qiaojun Yu",
+        "Kailin Li",
+        "Ming Zhou",
+        "Mu Huang",
+        "Xinyue Li",
+        "Wenze Cui",
+        "Bingqi Jiang",
+        "Xueyue Zhu",
+        "Junting Dong",
+        "Haoyu Guo",
+        "Tao Lu",
+        "Mulin Yu",
+        "Bowen Zhou",
+        "Bin Zhao",
+        "Tianfan Xue",
+        "Weinan Zhang",
+        "Chunhua Shen"
+      ],
+      "abstract": "World Action Models (WAMs) jointly model visual dynamics and action generation for generalist robot manipulation. A central challenge is to integrate priors from large-scale pretrained models---including visual dynamics, scene semantics, geometry, and motion---into a unified framework for robot action generation. We introduce InternW0-Δ, a unified WAM pretrained on a heterogeneous corpus that outperforms prior methods across simulation benchmarks and real-robot platforms.\n  InternW0-Δ combines pretrained visual dynamics, scene-level semantics, 4D geometric and motion priors, and action generation within a Mixture-of-Transformers (MoT) framework. A pretrained video expert and an action expert interact under semantic guidance from a frozen VLM, while a pretrained 4D foundation model injects geometric and motion priors through training-only distillation. We further introduce Causal Imprint, which learns future-relevant scene changes from training-only future supervision and provides predictive representations directly to the action expert without future-video rollout at inference.\n  For large-scale joint training, we construct a heterogeneous corpus of robot demonstrations, UMI data, egocentric human demonstrations, and Ego2Robot data, curated and aligned under a common state-action representation. The resulting corpus contains over 20K hours of processed training data, to our knowledge the largest open-source corpus of its kind. We pretrain InternW0-Δ on this corpus and demonstrate strong performance across simulation benchmarks and real-robot platforms. We will open source the training code, model weights, infrastructure, data-processing pipeline, and processed data where licenses permit. Project page: https://internrobotics.github.io/InternW0-Delta/",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.31394"
+    },
+    {
+      "canonical_id": "arxiv:2609.27277",
+      "title": "TimeEvo: Failure-Driven Self-Evolution of a Time Series Agent",
+      "authors": [
+        "Jie Yang",
+        "Yan Zheng",
+        "Jiarui Sun",
+        "Xiran Fan",
+        "Junpeng Wang",
+        "Liang Wang",
+        "Zelin Xu",
+        "Qinghua Liu",
+        "Zhengyu Fang",
+        "Yiwei Cai",
+        "Philip S. Yu"
+      ],
+      "abstract": "Time series agents answer analytical questions by calling external tools, and which tools they carry is decided by people before the agent runs. However, we identify two failures in this setup. Human-Agent Tool Misalignment: a library of 21 expert-curated tools helps on some tasks and hurts on others, dropping anomaly accuracy under every backbone we test. Silent Harm: one round of generic self-revision changes 147 answers and breaks 56 of them, while the final score moves by less than a point. Both follow from the same gap: whether a tool helps is decided question by question at runtime, while tools are supplied in advance and judged by a single average. To address this, we propose TimeEvo, which clusters an agent's diagnosed failures into capability gaps, plans a measurement for each, synthesizes evidence-only tools that fill them, and admits the candidate library only through a paired admission gate. Experiments on ten time series QA tasks and three backbones show that TimeEvo, starting from an empty library, improves accuracy on every task and every backbone, and that a library grown on a cheap model still gains when it is installed into stronger ones. Code is available at https://github.com/Muyiiiii/TimeEvo.",
+      "published_at": "2026-09-23T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.27277"
+    },
+    {
+      "canonical_id": "arxiv:2609.28845",
+      "title": "LastOPD: Taming Collapse in Latent On-Policy Distillation",
+      "authors": [
+        "Jie Yang",
+        "Zhengyu Fang",
+        "Zelin Xu",
+        "Jiarui Sun",
+        "Xiran Fan",
+        "Junpeng Wang",
+        "Liang Wang",
+        "Qinghua Liu",
+        "Yiwei Cai",
+        "Yan Zheng"
+      ],
+      "abstract": "On-policy distillation (OPD) corrects a student on the responses it writes, but its signal is the teacher's next-token distribution: it tells the student what the teacher says but misses how it thinks. Latent supervision promises the missing part by aligning the student's latent states to the teacher's. Recent methods such as OPRD bring this signal into on-policy distillation. However, we observe two failures of this recipe when distilling Qwen3-4B and Qwen3-8B into Qwen3-1.7B-Base. Early gain, late collapse: latent supervision alone lifts MATH-500 accuracy from 25 to 46 in 10 steps, but subsequent training degrades performance down to 11 with no recovery. Better alignment, worse behavior: although the alignment metric steadily improves throughout this collapse, the most aligned model turns out to be the worst performing. Further analysis suggests a mismatch in how the latent signal is applied: layers paired by depth play different roles in the two models, so continued alignment may pull the student toward teacher states it cannot understand. To address this, we propose LastOPD, which applies the latent signal only at the last-layer state, the common interface both LM heads read, and only during a 10-step crossfade into token-level OPD. This keeps the useful part of the latent signal and hands the student to token-level supervision before the collapse sets in. Extensive experiments show that LastOPD improves MATH-500 over token-only OPD by 5.55 and 4.02 points with the 4B and 8B teachers, leads on most held-out datasets, and reaches the final score of token-only OPD in about half the steps. Code is available at https://github.com/Muyiiiii/LastOPD.",
+      "published_at": "2026-09-23T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.28845"
+    },
+    {
+      "canonical_id": "arxiv:2609.24385",
+      "title": "Tactile-JEPA: Topology-Aware Self-Supervised Representation Learning for Distributed Tactile Sensors",
+      "authors": [
+        "Elizaveta Kovtun",
+        "Matvey Konovalov",
+        "Andrey Sakhovskiy",
+        "Semen Budennyy"
+      ],
+      "abstract": "Tactile sensing is an essential modality for robots performing contact-rich, dexterous manipulation, particularly under visual occlusion. While pre-trained image encoders are standard in robot learning pipelines, tactile encoders are still commonly trained from scratch from raw, noisy signals, which might limit their expressivity. Existing self-supervised learning (SSL) approaches focus predominantly on vision-based tactile sensors, leaving distributed electronic skins largely unaddressed. These sensors, however, have a distinctive property: their sensing elements are sparse and irregularly arranged over the surface they cover, which makes direct reuse of visual SSL methods suboptimal. We present Tactile-JEPA, an efficient self-supervised pre-training method that uses the spatial arrangement of tactile sensors to learn topology-aware representations. Specifically, it is trained to predict the embeddings of masked sensing elements from the unmasked remainder, using the sensor connectivity graph to guide spatial masking. Our analysis shows that effective tactile representations require capturing both local contact details and the global state of the tactile surface, which we achieve through dual-scale masking. Across three diverse datasets spanning magnetic and piezoresistive sensors, different robot embodiments, and single- and paired-sensor configurations, Tactile-JEPA reduces force estimation error by 6.3% and in-hand orientation error by 20.8% over the prior state-of-the-art, with consistent gains in other downstream applications, including policy learning. Overall, our results demonstrate that the benefit of tactile sensing depends critically on the quality of encoder pre-training, a problem which Tactile-JEPA addresses directly. Code is available at https://github.com/E-Kovtun/tactile.",
+      "published_at": "2026-09-21T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.24385"
+    },
+    {
+      "canonical_id": "arxiv:2609.25716",
+      "title": "FoMo: Forking Moment in Generative Trajectory as a Perceptual Distance",
+      "authors": [
+        "Jaihyun Lew",
+        "Mingi Jung",
+        "Minjun Park",
+        "Wooseok Song",
+        "Sungroh Yoon"
+      ],
+      "abstract": "Reference-based image quality assessment (IQA) metrics aim to reflect how humans perceive the perceptual distance between a pair of images. To learn how the human visual system (HVS) operates, recent reference-based IQA metrics heavily rely on human-annotated data. Mean opinion score (MOS)-based pointwise scoring, which assigns a scalar quality value per image, is preferable for annotation but is prohibitively expensive to collect at scale and is known to be noisy due to inconsistent human judgments. As an alternative, two-alternative forced choice (2AFC) pairwise labels have gained popularity due to their reliability and efficiency, but they capture only relative comparisons between pairs. In this paper, we propose a fully automated data generation pipeline that generates pointwise perceptual distance labels between image pairs without any human annotation. Our approach exploits the generative dynamics of diffusion models as a perceptual distance proxy, where the coarse structure of an image is generated in the early timesteps and the fine details are generated in the later timesteps. Images that fork early in the generation process share only coarse structure and are perceptually far apart; images that fork late differ only in fine detail. We demonstrate that the diffusion trajectory aligns well with the human visual system, and use this forking moment, FoMo, as a reference-grounded distance label to supervise the training of a reference-based IQA metric. The pointwise labels, which support universal comparison between arbitrary image pairs, enable an information-rich training objective. Extensive experiments across diverse backbone architectures confirm the effectiveness of our generation pipeline, outperforming human-annotated datasets in multiple benchmarks.",
+      "published_at": "2026-09-22T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.25716"
+    },
+    {
+      "canonical_id": "arxiv:2609.31199",
+      "title": "Enhancing Photogrammetric Digital Surface Models with Pretrained Diffusion Models and Multimodal Conditioning",
+      "authors": [
+        "Antoine Lorentz",
+        "Stéphane May",
+        "Valentine Bellet",
+        "Dawa Derksen",
+        "Bastien Nespoulous"
+      ],
+      "abstract": "Large-scale Digital Surface Models (DSMs) can be produced cost-effectively from satellite images via stereo-photogrammetry. However, the resulting 3D maps are often contaminated by noise, outliers, and voids. On the other hand, aerial LiDAR provides high-accuracy elevation measurements at a substantially higher cost. In this work, we study diffusion models conditioned both on photogrammetric DSMs and Pléiades imagery to refine vertically co-registered DSMs. We introduce a modified Stable Diffusion 3 architecture with a pruned text stream and a patch-wise normalization strategy, enabling stable training on LiDAR data and transfer from natural images to elevation maps. Experiments in French cities demonstrate that multimodal conditioning improves elevation accuracy, reducing Dense Urban RMSE from 6.00 to 3.45 m in the in-context cities and from 4.16 to 2.77 m in the held-out city of Bordeaux.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.31199"
+    },
+    {
+      "canonical_id": "arxiv:2609.30216",
+      "title": "Jev in the Wild: A Data-Driven Analysis of the Jev Model's Functionality, Applications and Ecosystem",
+      "authors": [
+        "Guoming Ling",
+        "Muen Xue",
+        "Zijian Ye"
+      ],
+      "abstract": "Jev is a fast, low-cost decision model that answers natural-language questions with choices, binary judgments, and scores. As its public ecosystem grows rapidly, it remains unclear how Jev is used across applications and how public attention relates to project distribution. To answer these questions, we conduct a large-scale, data-driven analysis of 2,170 publicly available Jev projects collected from GitHub as of September 22, 2026. We find rapid early growth in Jev's public ecosystem, with both new projects and integration into existing repositories. Across diverse domains, projects use Jev for multiple decision purposes and combine its interfaces. Attribute judgment and scoring are widely used, while the use of action selection, content filtering, and model and tool selection varies across domains. These patterns suggest that Jev serves as a reusable decision component whose functionality varies with the surrounding workflow. Meanwhile, public attention is concentrated in routing and interface agents and does not track project counts. Our findings provide a quantitative view of Jev's emerging ecosystem and inform the design and evaluation of general-purpose decision models across diverse application contexts.",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.30216"
+    },
+    {
+      "canonical_id": "arxiv:2609.30222",
+      "title": "TrackEverything: Long Horizon Dense Tracking via De-Duplicating 3D Scene Representations",
+      "authors": [
+        "Ayush Jain",
+        "Sreeharsha Paruchuri",
+        "Ishita Gupta",
+        "Fan Zhang",
+        "Tanner Schmidt",
+        "Jakob Engel",
+        "Katerina Fragkiadaki",
+        "Adam W. Harley"
+      ],
+      "abstract": "Existing point tracking models face a fundamental tradeoff: they can either track a sparse set of query points over long horizons, or track all points across only short clips. We introduce TrackEverything, a 3D point tracker that breaks this trade-off by representing videos as persistent 3D scene tracks in world coordinates. Grounded in the insight that videos are 2D projections of an underlying 3D world, TrackEverything decouples model complexity from video duration, allowing it to scale with unique physical scene geometry instead. Our approach introduces three key innovations. First, we employ a voxelization-based de-duplication mechanism at sliding-window boundaries to merge co-located tracks, preventing repeated observations of the same surface from redundantly accumulating. Second, we decompose tracking into an endpoint refiner that predicts each point's destination and static-versus-dynamic classification, followed by a lightweight trajectory refiner that decodes dense trajectories exclusively for dynamic points. Third, we propose 3D WAFT, replacing memory-prohibitive 4D correlation volumes with efficient feature sampling in the scene cloud. To the best of our knowledge, TrackEverything is the first 3D tracker capable of tracking all visible points across videos exceeding 1000 frames within 40 GB of GPU memory. On TAPVid-3D, TrackEverything outperforms all open-source all-frame dense 3D trackers by more than 20% APD on short clips, while remaining competitive with state-of-the-art sparse trackers on long sequences, despite tracking far more points.",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.30222"
+    },
+    {
+      "canonical_id": "arxiv:2609.31590",
+      "title": "AgentWorld: Benchmarking Long-Horizon Collaboration of Multi-agent LLMs",
+      "authors": [
+        "Raphael Shu",
+        "Yusen Zhang",
+        "Young Min Cho",
+        "Jin Mo Yang",
+        "Yuan Yuan",
+        "Wenliang Zheng",
+        "Sharath Chandra Guntuku",
+        "Lyle Ungar",
+        "Zhou Yu",
+        "Rui Zhang"
+      ],
+      "abstract": "Existing multi-agent benchmarks primarily test in competitive settings, short-horizon interactions under 20 steps, or simply aggregate individual performance, failing to isolate and highlight genuine collaboration capabilities of LLM-based agents. We introduce AgentWorld, a benchmark of 100 human-annotated tasks (with 100 augmented variants) for evaluating long-horizon, multi-agent collaboration. Tasks span 50+ interaction rounds across a rich MMORPG sandbox and require 3-20 agents with asymmetric roles and abilities to coordinate through communication, joint planning, and resource sharing under a blackbox setting where each agent acts independently without access to others' internal states. To quantify collaboration effectiveness in addition to conventional binary task success, we propose Causal Collaboration Effectiveness (CCE), a graph-based metric that traces causal dependencies between agent actions and measures what fraction of a team's effort actually contributed to the outcome. Experiments with Gemini 3 Flash, Claude Haiku 4.5, GPT-5 Mini, and DeepSeek R1-70B show that even the best model achieves only 52.0% task success, with systematic failure modes including communication breakdowns, role confusion, and inability to maintain shared plans across rounds. AgentWorld is fully open-source.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.31590"
+    },
+    {
+      "canonical_id": "arxiv:2609.29050",
+      "title": "SLCA-GRPO: Resolving Cross-Segment Credit Misattribution in Tool-Calling RL",
+      "authors": [
+        "Yan Zhan",
+        "Shaobo Liu",
+        "Qiunan Liu",
+        "Yuanjun Shi",
+        "Siqi Xu",
+        "WeiYi Hou",
+        "Xiang Xu",
+        "Zekang Li",
+        "Weizhou Pan",
+        "Jiahong Yan"
+      ],
+      "abstract": "Tool-calling agents produce heterogeneous outputs, interleaving structured tool invocations with user-facing natural language summaries. This output heterogeneity presents a structural failure mode in standard on-policy Reinforcement Learning (RL): algorithms like GRPO indiscriminately broadcast a homogeneous trajectory-level scalar advantage to all tokens. Consequently, gradient noise from summary generation leaks into tool-decision tokens, causing cross-segment credit misattribution and brittle optimization. In this work, we propose SLCA-GRPO, a framework incorporating Segment-Locked Credit Assignment (SLCA). To enable scalable exploration without costly real APIs and stable training, we first construct the Schema-Guided LLM Simulator (SGLS) as foundational training infrastructure. Building on this, SLCA decouples advantage estimation at the structural segment level within a single group of rollouts, without requiring additional rollouts from intermediate states. Supported by Hierarchical Rewards (HierR), SLCA routes execution advantages to tool tokens and preference advantages to summary tokens, eliminating advantage contamination (the dominant cross-segment credit misattribution channel) within each policy update. On a 7B backbone, SLCA-GRPO accelerates convergence and outperforms standard GRPO, ToolPO, and RLTR by +2.53 pp on in-domain evaluation, +1.36 pp on the Berkeley Function-Calling Leaderboard (BFCL), and +9.15 pp on τ^2-Bench under the same training budgets, achieving higher accuracy with reduced tool redundancy and costs.",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.29050"
+    },
+    {
+      "canonical_id": "arxiv:2609.30192",
+      "title": "SAGE: Mitigating Long-Horizon Reasoning Biases via Topological Guidance",
+      "authors": [
+        "Xinyue Zeng",
+        "Jiawei Zhang",
+        "Yujun Yan",
+        "Dawei Zhou"
+      ],
+      "abstract": "Long-horizon reasoning remains a central challenge for large language models (LLMs) under sparse-reward regimes. We argue that this brittleness arises from two biases induced by complex reasoning spaces: an exploration bias, where models are drawn toward locally plausible but structurally unstable branches, and a compounding bias, where small local deviations accumulate across depth and suppress rare rewards. We introduce Symbolic Closure Analysis (SCA) as a theoretical lens characterizing how branching structures and sparse rewards induce these biases in long-horizon reasoning with local admissibility, and as a design principle for structural priors in less formal reasoning tasks. Motivated by this analysis, we propose SAGE (Structural Admissibility-Guided Exploration), a unified framework that injects structural guidance to alleviate exploration bias and compounding bias in long-horizon reasoning. SAGE combines two complementary structural guidance: algebraic sparsification, which projects locally admissible candidates onto operator-indexed algebraic subspaces to suppress spurious branching and mitigate exploration bias, and hyperbolic structural guidance, which embeds reasoning states into a negatively curved space to provide dense depth-wise signals and mitigate compounding bias. Across 12 benchmarks and 7 model families, SAGE outperforms competitive baselines. In particular, SAGE achieves up to an 8-fold improvement on the Andrews-Curtis problem, an open real-world long-horizon task. Code is available at: https://github.com/Susan571/SAGE-NeurIPS2026.",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.30192"
+    },
+    {
+      "canonical_id": "arxiv:2609.29167",
+      "title": "IndicBankBench: Evaluating Safety and Reliability of Language Model Assistants in Indian Retail Banking",
+      "authors": [
+        "Suvradip Paul",
+        "Chandra Bhushan",
+        "Harsh Sharma",
+        "Nitin Kukreja",
+        "Yatharth Dedhia",
+        "Keyur Doshi",
+        "Prashant Devadiga"
+      ],
+      "abstract": "Banking assistants must use account-specific information to answer requests and, in many cases, take actions through tools. Evaluating only the final response misses important errors. An assistant may ask for information it already has, rely on stale context, select the wrong account, or write an invalid value after stating the correct one. We introduce IndicBankBench, a 799-case benchmark for Indian retail banking spanning five operational domains, a capability/refusal domain, and twenty primary axes. Cases are evaluated at four stages: safety, action and tool use, response adequacy, and advisory quality. Tool use and most safety checks are deterministic. A narrow resolver handles only ambiguous confirmation-before-write cases, while a separate LLM judge evaluates semantic response adequacy. We run every case three times and report strict pass^3, which requires success on all trials. Across the eleven evaluated models, strict reliability ranges from 43.7% to 58.2%, whereas at-least-once success ranges from 60% to 74%. This gap shows that at-least-once success can overstate dependable banking behavior. The case-level diagnostics also distinguish systems that ask unnecessary questions from those that act but fail to reconcile customer context or fully resolve the request. We release the cases, mock environment, and evaluation harness.",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.29167"
+    },
+    {
+      "canonical_id": "arxiv:2609.31473",
+      "title": "Game Arena: Strategic LLM Evaluation in Competitive Environments",
+      "authors": [
+        "Bovard Doerschuk-Tiberi",
+        "Yao Yan",
+        "Justin Chiu",
+        "Hann Wang",
+        "Timothy Chung",
+        "Martyna Plomecka",
+        "John Schultz",
+        "Jon Lipovetz",
+        "Clayton Drazner",
+        "Yuchen Zhuang",
+        "Jaimie Hwang",
+        "Nate Keating",
+        "Riley Jones",
+        "Andrew Lee",
+        "Oran Kelly",
+        "Ian Gemp",
+        "Michael Aaron",
+        "Laurel Prince",
+        "Kate Larson",
+        "Jeff Moser",
+        "Harrison Jobe",
+        "Chad Woodford",
+        "Siqi Liu",
+        "Andrew Wang",
+        "Bo Chang",
+        "Christopher D&#39;Mello",
+        "Diane Chaleff",
+        "Addison Howard",
+        "Johnny Yip",
+        "Chuck Sugnet",
+        "Antonio Gulli",
+        "Meghan O&#39;Connell",
+        "Will Cukierski",
+        "Nenad Tomasev",
+        "Dima Yeroshenko",
+        "Kinjal Parekh",
+        "Roxanne Daniel",
+        "Marc Lanctot",
+        "Domino Weir",
+        "Elsa Dong",
+        "Daniel Hennes",
+        "Melissa Nalubwama",
+        "Robert Fraser",
+        "Ryan Trostle",
+        "Jun Peng",
+        "Tom Mason",
+        "Lloyd Hightower",
+        "Chiamaka Chukwuka",
+        "Yuexiang Zhai",
+        "Phoebe Kirk",
+        "Yi Su",
+        "Yuting Han",
+        "Jie Ren",
+        "Chris Prichard",
+        "Sahand Sharifzadeh",
+        "Karim Hakimzadeh",
+        "DJ Sterling",
+        "Meg Risdal",
+        "Kate Olszewska",
+        "Ya Xu",
+        "Orhan Firat",
+        "Minmin Chen"
+      ],
+      "abstract": "We introduce Kaggle Game Arena, an open and ever-expanding platform to evaluate large language models (LLMs) through competitive games. Different from static benchmarks, game arena enables models to play head-to-head matchups in structured environments where the gameplay strength naturally increases as models evolve, preventing performance saturation. This technical report details the infrastructure behind Game Arena and describes the three pilot game environments: Chess, Poker, and Werewolf. These environments span perfect information, imperfect information, and multiplayer game settings, enabling a systematic study of models' strategic planning, adaptation, and robustness under uncertainty. For each game, we provide a detailed description of the environment, evaluation metrics, and results from running full competitions across models. Through robust infrastructure and large-scale ground-truth based evaluation, Game Arena ensures reproducibility, transparency and generalizability to new games and variants over time.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.31473"
+    },
+    {
+      "canonical_id": "arxiv:2601.06352",
+      "title": "CARD: Cluster-level Adaptation with Reward-guided Decoding for Personalized Text Generation",
+      "authors": [
+        "Yutong Song",
+        "Jiang Wu",
+        "Weijia Zhang",
+        "Chengze Shen",
+        "Shaofan Yuan",
+        "Weitao Lu",
+        "Jian Wang",
+        "Yu Wang",
+        "Nikil Dutt",
+        "Amir M. Rahmani"
+      ],
+      "abstract": "Adapting large language models to individual users remains challenging due to the tension between fine-grained personalization and scalable deployment. We present CARD, a hierarchical framework that achieves effective personalization through progressive refinement. CARD first clusters users according to shared stylistic patterns and learns group-specific LoRA adapters, enabling robust generalization and strong low-resource performance. To capture individual differences within each cluster, we propose an implicit preference learning mechanism that contrasts user-authored text with cluster-level generations, allowing the model to infer user-specific style preferences without manual annotation. At inference time, CARD injects personalization exclusively at decoding via lightweight user preference vectors and low-rank logit corrections, while keeping the base model frozen. Experiments on the LaMP and LongLaMP benchmarks show that CARD achieves superior generation quality compared to baselines, while significantly improving efficiency and scalability for practical personalized text generation.",
+      "published_at": "2026-09-20T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2601.06352"
+    },
+    {
+      "canonical_id": "arxiv:2601.06362",
+      "title": "Do Implicit Personalization and Explicit Styles Conflict? PsPLUG: A Lightweight Plug-in for Balancing Personalization and Style in Customized LLMs",
+      "authors": [
+        "Yutong Song",
+        "Jiang Wu",
+        "Shaofan Yuan",
+        "Chengze Shen",
+        "Jian Wang",
+        "Yu Wang",
+        "Nikil Dutt",
+        "Amir M. Rahmani"
+      ],
+      "abstract": "Personalized large language models are often expected to follow explicit style instructions, yet we find that such instructions can undermine the user-specific characteristics that personalization methods aim to preserve. We call this failure mode personalization collapse: explicit style control can conflict with implicit user preferences. To address this challenge, we propose PsPLUG, a lightweight plug-in that learns a user-specific residual after accounting for the requested style. PsPLUG also allows us to tune personalization strength at inference time. Our experiments show that explicit style instructions can diminish personalization in existing methods, whereas PsPLUG better preserves user preferences while providing precise control over the balance between personalization and style adherence.",
+      "published_at": "2026-09-20T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2601.06362"
+    },
+    {
+      "canonical_id": "arxiv:2609.28660",
+      "title": "Morphometric Imitation: From Morphology and Contact Aware Hand Retargeting to Sim-to-Real Visuomotor Policy",
+      "authors": [
+        "Tara Sadjadpour",
+        "Siming He",
+        "C. K. Wolfe",
+        "Haozhi Qi",
+        "Lea Wilken",
+        "S. Shankar Sastry",
+        "Claire Tomlin",
+        "Jitendra Malik"
+      ],
+      "abstract": "Human hand-object interactions (HOIs) provide a rich source of demonstrations for dexterous manipulation, but learning directly from them presents challenges in bridging morphology gaps, ensuring dynamical feasibility, and sim-to-real deployment. We present Morphometric Imitation, a three-stage framework that transforms reconstructed HOIs into zero-shot sim-to-real visuomotor policies. First, morphometric optimization (MMO) kinematically retargets human motion across hand morphologies while preserving demonstrated contacts. Second, residual reinforcement learning (RL) refines the kinematic reference using object pose and contact information from the human motion to produce dynamically feasible robot demonstrations. Third, these demonstrations are distilled into visuomotor policies. Across three robot hands and ten HOIs, MMO improves contact F1 over the strongest of five baselines by at least 8 points for every hand, while also improving the success rate of downstream dynamic retargeting by as much as 35 points. Ablations on the residual RL show complementary benefits from using object pose and contact information. Finally, the visuomotor policies achieve 89.3% zero-shot success in 300 real-world trials on 30 objects. Project page: https://morphometricimitation.github.io{this https URL}",
+      "published_at": "2026-09-23T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.28660"
+    },
+    {
+      "canonical_id": "arxiv:2609.24749",
+      "title": "D-JEPA: A Decision-Aligned Latent World Model",
+      "authors": [
+        "Shuaijun Liu",
+        "Chengyu Wu",
+        "Qifu Wen",
+        "Feiyang You",
+        "Chenglong Zhang",
+        "Shuyang Hao",
+        "Xi Lin",
+        "Ningxin Su"
+      ],
+      "abstract": "Latent world models predict the consequences of actions, but accurate prediction does not guarantee that latent distance reflects which candidate will execute successfully. We identify a decision-local prediction gap: among the few futures competing for execution, a candidate predicted closer to the goal can produce a worse realized outcome than an available alternative. We introduce D-JEPA, a decision-aligned latent world model that learns decision-relevant relations among candidate futures from executed outcomes. A bounded, permutation-equivariant operator jointly reasons over goal-relative predictive features and ordinal evidence, refining pretrained predictive geometry where action choices are most consequential. Restricted predictor adaptation and a shared ordinal interface extend this alignment across complementary predictive geometries. D-JEPA further realizes the learned decision structure in JEPA-compatible future representations, enabling deployment through native latent-distance planning. Evaluations across latent control, manipulation, pretrained action-producing models, physical robots and autonomous driving demonstrate improved action selection, including 87.89% success on PushT, a 15.04-point average gain on RoboTwin, and a 17-point gain on physical robot tasks. These results establish decision-relevant relational structure as a direct bridge between predictive world modeling and effective control.",
+      "published_at": "2026-09-21T15:17:32+00:00",
+      "url": "https://huggingface.co/papers/2609.24749"
+    },
+    {
+      "canonical_id": "arxiv:2609.31291",
+      "title": "Softmax Reparameterization for Output-Head Quantization",
+      "authors": [
+        "Asim Kadav",
+        "Christian Flores",
+        "Chirag Arora",
+        "Varun Kotte",
+        "Hongbo Zheng",
+        "Lan Yan",
+        "Priya Shanmugasundaram",
+        "Tracy Holloway King"
+      ],
+      "abstract": "Large vocabularies make output heads a substantial inference cost in small language models. We propose softmax reparameterization, a post-training method that selects a functionally equivalent output head before quantization. The method subtracts a scalar multiple of the vocabulary-row mean from every output row and selects the coefficient by validation KL separately for RTN, activation-weighted MSE, and full-Hessian GPTQ. This one-dimensional search includes the original head and fixed mean-centering, preserves the full-precision softmax distribution, and leaves the trained decoder unchanged; a rank-one correction handles nonlinear logit paths such as soft-capping. Across seven heads, W4 gains concentrate where baseline quantization substantially distorts predictions: on Phi-4-mini, AW-MSE KL falls from 0.936 to 0.256. The gains survive stronger GPTQ calibration and remain complementary to exact per-channel scaling and affine quantization. Across four heads and three W4 quantizers, frozen WikiText-selected coefficients also transfer to C4 and OpenWebMath, outperforming mean-centering in all 18 comparisons where the frozen coefficient differs from 1 and matching it in the remaining six. At W2, used as a compression stress test, benefits broaden across nearly the full model--quantizer matrix. Matched residual analysis shows that improved fidelity can accompany greater logit reconstruction error while reducing the residual's Fisher-weighted cost. For shift-compatible heads, reparameterization adds no inference operation and preserves packed W4 execution: with the decoder held in BF16, quantizing the Phi output head reduces batch-one generation latency by 10.8% relative to the BF16-head baseline.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.31291"
+    },
+    {
+      "canonical_id": "arxiv:2609.04355",
+      "title": "VLA-Precision: Asymmetric Co-Bootstrapping for Efficient Real-World Online RL of Vision-Language-Action Models",
+      "authors": [
+        "Chenyu Su",
+        "Zhaolong Shen",
+        "Yuan Qian",
+        "Chen Qian",
+        "Rui Zhang",
+        "Feng Yan",
+        "Weixing Chen",
+        "Fei Zhang",
+        "Jiamin Wang",
+        "Shuang Cong",
+        "Weiwei Shang"
+      ],
+      "abstract": "Pretrained vision-language-action (VLA) models enable broad manipulation but remain unreliable in tasks demanding precision and repeatability. Applying real-world online reinforcement learning (RL) to VLA post-training enables autonomous trial-and-error improvement beyond demonstrations alone, but exposes two bottlenecks: 1) unreliable value signals can induce policy drift; 2) large-VLA overhead constrains throughput and sample efficiency. To address these challenges, we present VLA-Precision, an efficient real-world online RL framework featuring the Asymmetric Co-Bootstrapping (ACoB) algorithm and the ACoB-Stream architecture. Specifically, ACoB establishes asymmetric co-bootstrapping across timescales: early intervention-guided behavioral learning rapidly improves policy performance while enhancing online experience quality. As autonomous experience accumulates, global return propagation and local preference ranking progressively calibrate value estimates, yielding relative action advantages for reference-regularized policy improvement while suppressing drift. To enable ACoB on large VLAs, we develop ACoB-Stream, a closed-loop experience--policy architecture that establishes invariant-state decoupling and on-demand streaming as design principles, delivering up to 10.9times improvements in throughput and computational efficiency. Extensive evaluations on nine high-precision chemistry tasks across four categories and four robot embodiments show that VLA-Precision achieves 98.3\\% mean success rate in 45.8 min/task, with 27.6 s episodes running at 1.2times and 1.8times the speeds of VLA and RL baselines. Resources are available at https://vla-precision.github.io.",
+      "published_at": "2026-09-18T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.04355"
+    },
+    {
+      "canonical_id": "arxiv:2609.30670",
+      "title": "TRACE: Temporal Audit and Condition-aware Evaluation of Streaming Video Understanding",
+      "authors": [
+        "Yibo Ma",
+        "Qianqian Zhang",
+        "Peng Liu",
+        "Tiancheng Zhao"
+      ],
+      "abstract": "Streaming video understanding requires models to interpret evidence as it arrives, yet current evaluations often report task scores without specifying when evidence becomes valid, how visual history is maintained, or how responses are triggered. As a result, similar scores may correspond to different workloads, failure modes, and operational behavior. We introduce TRACE (Temporal Audit and Condition-aware Evaluation), a condition-aware benchmark and evaluation framework that makes these factors explicit. TRACE combines temporally audited visual tasks with evidence timing and instruction-dependent trigger annotations, a unified causal Core--Adapter protocol that controls information availability while recording actual history processing and response events, and multidimensional reporting of answer quality, timeliness, response-selection behavior, workload, completion, and reliability. On 1,240 records from 517 videos, we evaluate eight publicly available models or systems in eight configurations. We find that nearly identical QA accuracy can mask substantial differences in completion, answer validity, and generation workload, while proactive performance separates into response quality, response delay, false alarms (responses emitted while no target window is currently valid and a later one remains), and missed target windows. These results show that streaming-video performance should be interpreted as execution-conditioned system behavior rather than a single score. Our benchmark and code can be accessed at https://github.com/om-ai-lab/trace-bench{https://github.com/om-ai-lab/trace-bench}.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.30670"
+    },
+    {
+      "canonical_id": "arxiv:2609.22237",
+      "title": "Not All Ranks Are Equal: Budget-Aware LoRA Merging Across Tasks",
+      "authors": [
+        "Avinash Amballa",
+        "Yashas Malur Saidutta",
+        "Wenbo Li",
+        "Lazar Valkov",
+        "Srinivas Chappidi"
+      ],
+      "abstract": "Merging low-rank adapters (LoRAs) promises to eliminate the overhead of swapping task-specific weights at inference time. However, existing merging methods assume every layer needs the same rank budget. Further, some methods assume that rank budget needs to be split equally among the tasks too. We show this uniform-budget assumption is a major source of the performance gap between merged and per-task LoRAs. However, rank selection is an NP hard problem. To this end, we introduce Net Utility, a data free metric that first decomposes every task LoRA by its Singular Value Decomposition (SVD) and scores each of those singular directions by its task utility and its interference with other tasks directions. Next, we globally pool these scores to select singular directions with the highest values with a constraint on the total number of directions selected. The proposed Net Utility metric is applied on top of five different merging methods across three different merging spaces. The merging is done over two sets of tasks, vision and language tasks. Net utility based rank allocation outperforms its counterparts without that allocation. On average, over vision tasks it achieves +2.1% improvement in performance, and +2.2% improvement over the language tasks.",
+      "published_at": "2026-09-03T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.22237"
+    },
+    {
+      "canonical_id": "arxiv:2609.28327",
+      "title": "LightMIS: Ultra-Lightweight Medical Image Segmentation Without a Stage-Wise Decoder",
+      "authors": [
+        "Andrei Arhire",
+        "Mihaela-Elena Breabăn",
+        "Radu Timofte"
+      ],
+      "abstract": "We present LightMIS, a scalable family of ultra-lightweight convolutional networks for 2D binary medical image segmentation without a learned stage-wise decoder. LightMIS aligns the outputs of a five-level encoder to a common resolution using Scale-Aligned Projection blocks, aggregates them once, and refines the fused representation with an Adaptive Fusion Cascade. The cascade combines Adaptive Kernel Fusion with the proposed Progressive Receptive Fusion module, which uses temporary channel expansion, complementary depthwise receptive fields, and progressive cross-branch information transfer. We evaluate LightMIS-T, LightMIS-S, and LightMIS using five-fold cross-validation under a common nnU-Net v2.3.1 protocol on DRIVE, Kvasir-SEG, DSB18, BUSI, ISIC-2017, and ISIC-2018. Full LightMIS contains 0.131 M parameters and requires 0.575 GFLOPs for a 3times256times256 input, achieving modality-macro Dice and IoU scores of 86.71% and 78.99%, respectively. Mobile U-ViT obtains 86.75% Dice and 79.07% IoU, so the observed differences are 0.04 and 0.08 percentage points. Relative to Mobile U-ViT, nnWNet, and nnU-Net, LightMIS reduces parameter count by 90.58-99.61% and GFLOPs by 82.54-96.14%. On an Arm Mali-G52 MC2 GPU, all LightMIS variants achieve full GPU delegation, with median delegated latency ranging from 53.31 ms for LightMIS-T to 138.31 ms for LightMIS. These results demonstrate a favorable accuracy-complexity trade-off and on-device execution feasibility for the evaluated tasks. The code is publicly available at https://github.com/AndreiiArhire/LightMIS.",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.28327"
+    },
+    {
+      "canonical_id": "arxiv:2609.30837",
+      "title": "MOPD-Router: Rethinking Teacher Routing in Multi-Teacher On-Policy Distillation",
+      "authors": [
+        "Tianze Xu",
+        "Yanzhao Zheng",
+        "Zhentao Zhang",
+        "Yuanqiang Yu",
+        "Chao Ma",
+        "Jihuai Zhu",
+        "Lelun Wu",
+        "Lyumanshan Ye",
+        "Pengfei Liu",
+        "Baohua Dong",
+        "Hangcheng Zhu",
+        "Ruohui Huang",
+        "Gang Yu"
+      ],
+      "abstract": "Multi-teacher on-policy distillation (MOPD) integrates specialized capabilities into a single student, but existing practice typically hard-routes each prompt to a domain-matched teacher for the entire rollout. This dependence on prompt-level domain labels restricts using unlabeled training mixtures and leaves complementary signals from other teachers unused. We introduce MOPD-Router, a framework that routes supervision over the full teacher pool at each token, without domain labels or training a separate routing model. Its plug-in interface supports different metrics for selecting and weighting teacher-specific OPD signals. Within this interface, we propose ExpertAlign, which scores each teacher by whether its correction to the student at the current token expresses the specialization that teacher acquired during post-training, and compare it against two reference metrics built on teacher confidence (Entropy) and teacher-student discrepancy (Novelty). Experiments on unlabeled and domain-labeled training mixtures under strong-to-weak and same-size distillation scenarios show that ExpertAlign achieves the strongest overall performance in all four settings. On unlabeled data, it improves the overall score by 5.88 (+12.3%) points over Mean aggregation; on domain-labeled data, it outperforms standard MOPD by 3.95 (+7.8%) points without using available domain labels. These results demonstrate token-level routing can exploit cross-domain complementary supervision, and reduce exclusive reliance on prompt-level domain assignment. Code is available at: https://github.com/TURLEing/MOPD-Router.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.30837"
+    },
+    {
+      "canonical_id": "arxiv:2609.30867",
+      "title": "Evidence-Grounded Auditing of Identification Assumptions in Climate-Policy Causal Evaluations",
+      "authors": [
+        "Yonghong Zhang",
+        "Yong Xie",
+        "Isabel M. Parra",
+        "Ricardo Correia"
+      ],
+      "abstract": "Difference-in-differences (DID) studies are widely used to evaluate climate policy, but assessing the evidence supporting their identification assumptions remains challenging. We introduce ARGUS, a structured language-model pipeline that audits reported evidence against an eleven-dimension assumption-implication-evidence rubric and abstains when relevant evidence cannot be retrieved. We evaluate ARGUS using injected flaws, economics papers, and a small pilot with reconciled labels. On the 11-flaw benchmark, ARGUS detects 73% of planted flaws, compared with 18% for a keyword-based pipeline. Across 26 economics papers, ARGUS abstains on about 40% of paper-dimension assessments for lack of retrievable evidence. In a five-paper pilot with labels reconciled by two annotators, it assigns a higher risk level than the labels on 25 of the 33 assessments it completes. A rule fixed before the labels arrived removes most of this in-sample; weighted agreement stays low. ARGUS provides evidence-linked risk reports that localize potential weaknesses for expert review, without adjudicating causal claims. Code and data: https://github.com/yonghongzhang-io/ARGUS",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.30867"
+    },
+    {
+      "canonical_id": "arxiv:2608.09444",
+      "title": "Depth-adaptive Inference of Looped Language Models via Continuous Depth Batching",
+      "authors": [
+        "Kristian Schwethelm",
+        "Daniel Rueckert",
+        "Georgios Kaissis"
+      ],
+      "abstract": "A main promise of looped language models is depth-adaptive inference. By looping a block of shared layers a variable number of times, the model can use less compute for \"easy\" tokens and more for \"hard\" ones. However, tokens with different numbers of loops cannot share a uniform forward pass and therefore cannot be handled by standard batching systems such as vLLM. The practical value of depth-adaptive inference thus hinges on whether batching can be made efficient. We introduce the first efficient method for depth-adaptive looped LMs via continuous depth batching (CDB), which forms new batches between loop steps. Our method dynamically schedules looped and non-looped parts of the architecture, manages looped KV-caching, and predicts which tokens will exit the loop in advance so it can prepare batches asynchronously. Experiments on Ouro 1.4B and Huginn 3.5B show that fully looped architectures are best suited to depth-adaptive inference, as large non-looped layers outside the recurrent core (e.g., token embedding, LM head, and unshared transformer blocks) slow down and complicate scheduling. Overall, CDB realizes up to 99% of the estimated maximum speedup available, leaving further gains primarily dependent on model architecture and exit behavior.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2608.09444"
+    },
+    {
+      "canonical_id": "arxiv:2609.31002",
+      "title": "ZooWork-ShopRanker: An Open, Preference-Aligned E-Commerce Reranker",
+      "authors": [
+        "Siqiao Xue",
+        "Shuxuan Liu",
+        "Ning Hu"
+      ],
+      "abstract": "Open rerankers trained for general web retrieval transfer imperfectly to e-commerce, where ranking decisions depend not only on topical relevance but also on user preferences, product constraints, and comparative product fit. These preference signals are difficult to supervise at scale: real search traffic provides authentic queries and candidates but no clean pairwise labels. We present ZooWork-ShopRanker, a family of e-commerce rerankers (0.6B, 4B, and 8B) aligned to judge-labeled shopping preference. Training pairs are labeled by a panel of reasoning large language models (LLMs) from different families acting as a preference oracle, with position-debiased judgments and agreement tiers, and the rerankers are trained on these labels. The aligned 8B flagship then serves as a distillation teacher for the efficient 4B and 0.6B models, which are fit to its scores and sharpened on judged pairs. To measure progress, we introduce ShopRank-Bench, a contamination-limited benchmark of ~10,000 private-traffic preference pairs in both text formats, tiered by how many judge families committed to each label. ZooWork-ShopRanker-8B and -4B significantly outperform the strongest open reranker baseline, every model significantly beats its own un-aligned base, and ZooWork-ShopRanker-0.6B beats its size peer; the gains hold in both formats and extend to common MTEB benchmarks. We release the models and the dual-format ShopRank-Bench to facilitate further research.",
+      "published_at": "2026-09-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.31002"
+    },
+    {
+      "canonical_id": "arxiv:2609.29474",
+      "title": "CodeGraph: Open-Taxonomy Knowledge Graph for Source Code with Wikidata Grounding",
+      "authors": [
+        "Federico Pennino",
+        "Andrea Gurioli",
+        "Stefano Zacchiroli",
+        "Maurizio Gabbrielli",
+        "Paolo Ferragina"
+      ],
+      "abstract": "Public software repositories, like GitHub and Software Heritage Archive, store billions of files, yet extracting their implicit engineering knowledge ---i.e., the algorithms they implement, the paradigms they follow, the patterns they instantiate, and the application domains they serve--- remains challenging, as current tools are constrained to syntactic and token-level analysis. We present a pipeline for building an open-taxonomy semantic annotation of source code using a code-specialised Large Language Model. The extracted entities are grounded in Wikidata through a three-stage linking procedure: a deterministic SPARQL stage handles unambiguous entities, a Deep Research Agent resolves the residual long tail, and a hierarchy-rollup stage imports the parent-of closure of each resolved Wikidata identifier. The resulting annotations are materialised as a source-code-specific open-taxonomy knowledge graph. We further introduce a calibrated quality-assurance protocol that quantifies annotation precision by combining a small human gold set with an LLM-as-a-judge filter. We applied our pipeline to the 167 million files of the Stack-Edu corpus, creating the first known large-scale open-taxonomy knowledge graph for source code. Our graph, named CodeGraph, contains approximately 158 million nodes, which include around 145 million files, about 63,000 extracted concept entities (such as algorithms, paradigms, design patterns, and application domains), and roughly 19,800 grounded Wikidata entities. Furthermore, CodeGraph features approximately 1 billion typed edges that connect files to their respective concepts, link these concepts to their grounded Wikidata identifiers, and relate them to their parent categories, covering 14 programming languages.",
+      "published_at": "2026-09-24T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.29474"
+    },
+    {
+      "canonical_id": "arxiv:2604.02103",
+      "title": "BoundInk: Boundary-Aware Online Handwriting Generation",
+      "authors": [
+        "Jinsu Shin",
+        "Sungeun Hong",
+        "JinYeong Bak"
+      ],
+      "abstract": "Realistic online handwriting depends not only on individual character shapes, but also on how a writer connects, spaces, and aligns adjacent characters. Existing methods rely primarily on long-range sequence modeling and capture these inter-character behaviors only implicitly. This often produces plausible glyphs accompanied by broken cursive joins, inconsistent spacing, or writer-inconsistent transitions. We introduce BoundInk, a writer-conditioned framework that treats inter-character boundaries as explicit generation units. By jointly modeling local transitions and surrounding text context, BoundInk preserves writer-specific glyph appearance while improving connectivity and spacing across complete text lines. We further introduce a boundary-aware evaluation framework that directly assesses cursive continuity and spatial relationships between characters beyond conventional trajectory similarity. Across three benchmark-matched settings, BoundInk improves all applicable boundary-quality measures and reduces normalized dynamic time warping by 17.6--47.8%. In blind human evaluations, BoundInk outputs are preferred in 78.0--82.6% of valid criterion-wise judgments.",
+      "published_at": "2026-09-20T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2604.02103"
+    },
+    {
+      "canonical_id": "arxiv:2609.23551",
+      "title": "Paragraph Boundaries Are Not White Space:Compression Depth as the Signature of Hierarchical Structure",
+      "authors": [
+        "Shuyang Xiang"
+      ],
+      "abstract": "Standard positional encodings represent position as a one-dimensional reading-order coordinate, but reading order alone does not determine hierarchical textual structure. We use a hierarchical rotary positional encoding (hRoPE) that represents paragraph, sentence, and token indices as separate channels, hold the token sequence fixed, intervene on the paragraph coordinate p1, and measure cross-paragraph attention with a token-distance-exact estimator. Attention is compressed relative to a token-distance-matched baseline in every corpus, but compression alone is not diagnostic of true structure: an architecturally identical channel with density-matched random labels is compressed too, more shallowly. What distinguishes real structure is the depth of compression, which is greater and corpus-dependent while the control's is not. Comparing eight corpus-only quantities across three constructs (lexical persistence, paragraph length, embedding-based coherence), none fully reproduces the cross-corpus ordering of depth, though embedding-based coherence comes closest. Compression depth, not its location, is the reproducible signature of genuine paragraph structure in our setting.",
+      "published_at": "2026-09-20T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2609.23551"
+    }
+  ],
+  "observations": [
+    {
+      "paper_id": "arxiv:2609.31620",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 1,
+      "score": 117.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/Hongyang-Du/FuseReg",
+        "projectPage": "https://hongyang-du.github.io/FuseReg/",
+        "organization": {
+          "_id": "66eb6cd5d10fdbc179fa6a20",
+          "name": "USC-PSI-Lab",
+          "fullname": "USC Physical Superintelligence (PSI) Lab",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/6552aa185138c382d3228761/vXpouU0ojcyCalAB0bgde.png"
+        },
+        "upvotes": 117,
+        "num_comments": 3
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.26333",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 2,
+      "score": 61.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/IST-DASLab/disaggregated-quantization",
+        "organization": {
+          "_id": "64d0ffde9cff738203a50e9b",
+          "name": "ISTA-DASLab",
+          "fullname": " IST Austria Distributed Algorithms and Systems Lab",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/628e0ce4e53bbd334577fcb0/TRPtgtSavYjDJOK3S1I8M.png"
+        },
+        "upvotes": 61,
+        "num_comments": 3
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.18703",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 3,
+      "score": 47.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/OpenDCAI/RayOrch",
+        "projectPage": "https://opendcai.github.io/RayOrch-doc/",
+        "organization": {
+          "_id": "61dcd8e344f59573371b5cb6",
+          "name": "PekingUniversity",
+          "fullname": "Peking University",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/noauth/vavgrBsnkSejriUF4lXDE.png"
+        },
+        "upvotes": 47,
+        "num_comments": 3
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.31093",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 4,
+      "score": 21.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "67d1140985ea0644e2f14b99",
+          "name": "ByteDance-Seed",
+          "fullname": "ByteDance Seed",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/6535c9e88bde2fae19b6fb25/flkDUqd_YEuFsjeNET3r-.png"
+        },
+        "upvotes": 21,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.31394",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 5,
+      "score": 18.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "projectPage": "https://internrobotics.github.io/InternW0-Delta/",
+        "upvotes": 18,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.27277",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 6,
+      "score": 16.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/Muyiiiii/TimeEvo",
+        "organization": {
+          "_id": "6761c0cdc2e463f1be8bb1f3",
+          "name": "visainc",
+          "fullname": "Visa Inc",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/61ac8f8a00d01045fca0ad2f/4VqU1LqO-ZvMO4F2_ricQ.jpeg"
+        },
+        "upvotes": 16,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.28845",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 7,
+      "score": 14.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/Muyiiiii/LastOPD",
+        "organization": {
+          "_id": "6761c0cdc2e463f1be8bb1f3",
+          "name": "visainc",
+          "fullname": "Visa Inc",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/61ac8f8a00d01045fca0ad2f/4VqU1LqO-ZvMO4F2_ricQ.jpeg"
+        },
+        "upvotes": 14,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.24385",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 8,
+      "score": 13.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/E-Kovtun/tactile",
+        "projectPage": "https://bosbobos.github.io/Tactile-JEPA/",
+        "upvotes": 13,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.25716",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 9,
+      "score": 10.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/JHLew/FoMo",
+        "organization": {
+          "_id": "66d54dc8033492801db2bf5a",
+          "name": "SeoulNatlUniv",
+          "fullname": "Seoul National University",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/659ccc9d18897eb6594e897f/_-0BM-1UyM-d-lRiahFnf.png"
+        },
+        "upvotes": 10,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.31199",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 10,
+      "score": 9.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "6373653c0938c0754236bf94",
+          "name": "thalesgroup",
+          "fullname": "Thales",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/61ac8f8a00d01045fca0ad2f/OYPtQR9U4upAppyG3j9Ua.jpeg"
+        },
+        "upvotes": 9,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.30216",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 11,
+      "score": 9.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/godxue1/Jev_in_the_wild",
+        "organization": {
+          "_id": "6390c6fdd00f25601f445cd4",
+          "name": "CUHK-CSE",
+          "fullname": "The Chinese University of Hong Kong",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/621f2eb36e152b56a7cf0248/o8RRAczRjfNEzq70GzUwQ.png"
+        },
+        "upvotes": 9,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.30222",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 12,
+      "score": 8.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "691d9a1012cc4d473e1c862f",
+          "name": "CarnegieMellonU",
+          "fullname": "Carnegie Mellon University",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/68e396f2b5bb631e9b2fac9a/6I146aJvxxlRCEbYFFAeQ.png"
+        },
+        "upvotes": 8,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.31590",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 13,
+      "score": 8.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "projectPage": "https://agentworld.io/",
+        "upvotes": 8,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.29050",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 14,
+      "score": 7.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/SLCA-GRPO/SLCA-GRPO",
+        "organization": {
+          "_id": "66543b6e420092799d2f625c",
+          "name": "tencent",
+          "fullname": "Tencent",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/5dd96eb166059660ed1ee413/Lp3m-XLpjQGwBItlvn69q.png"
+        },
+        "upvotes": 7,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.30192",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 15,
+      "score": 6.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/Susan571/SAGE-NeurIPS2026",
+        "upvotes": 6,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.29167",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 16,
+      "score": 6.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/npci/IndicBankBench",
+        "organization": {
+          "_id": "69842b03a289b72fb05279be",
+          "name": "NPCI",
+          "fullname": "National Payments Corporation of India",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/698429270765e1c471552aa5/c_g5oaMFQVDLPibSTVrTQ.png"
+        },
+        "upvotes": 6,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.31473",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 17,
+      "score": 6.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "projectPage": "https://www.kaggle.com/game-arena",
+        "organization": {
+          "_id": "62b433171bdae0c3bfab99cc",
+          "name": "kaggle",
+          "fullname": "Kaggle",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/1655980755423-5fbfd09ee366524fe8e97cd3.png"
+        },
+        "upvotes": 6,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2601.06352",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 18,
+      "score": 4.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "64a3151b05292480e9756fff",
+          "name": "ucirvine",
+          "fullname": "UC Irvine",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/64a314dd5b232c870a773c3d/xBiiey7-vrcFzsP0NTRE4.png"
+        },
+        "upvotes": 4,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2601.06362",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 19,
+      "score": 4.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "64a3151b05292480e9756fff",
+          "name": "ucirvine",
+          "fullname": "UC Irvine",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/64a314dd5b232c870a773c3d/xBiiey7-vrcFzsP0NTRE4.png"
+        },
+        "upvotes": 4,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.28660",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 20,
+      "score": 4.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/tsadja/morphometric",
+        "projectPage": "https://morphometricimitation.github.io/",
+        "organization": {
+          "_id": "61f20a9ce108f2cba2dc0730",
+          "name": "Berkeley",
+          "fullname": "UC Berkeley",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/61ac8f8a00d01045fca0ad2f/0FjsTg2txEZZ4dEgmMnQL.png"
+        },
+        "upvotes": 4,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.24749",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 21,
+      "score": 3.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/NEBULIS-Lab/D-JEPA",
+        "projectPage": "https://nebulis-lab.com/D-JEPA",
+        "organization": {
+          "_id": "6aa4367a1698ec427a0c84d0",
+          "name": "NEBULIS-Lab",
+          "fullname": "NEBULIS Lab",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/660a1a9e42025e0a8b83d2d1/VXZtlUpXY5h6A8GxTJvOY.png"
+        },
+        "upvotes": 3,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.31291",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 22,
+      "score": 3.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "61e5d14f77496de0a6d95c6b",
+          "name": "adobe",
+          "fullname": "Adobe",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/1645217431826-61e35e517ac6b6d06cfa8081.png"
+        },
+        "upvotes": 3,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.04355",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 23,
+      "score": 3.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/scy-v/VLA-Precision",
+        "projectPage": "https://vla-precision.github.io/",
+        "organization": {
+          "_id": "61d8000084231b832e5bbd99",
+          "name": "ustc",
+          "fullname": "university of science and technology  of china",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/1641545773772-61d7fdeb22a383817a543b68.png"
+        },
+        "upvotes": 3,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.30670",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 24,
+      "score": 3.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/om-ai-lab/trace-bench",
+        "organization": {
+          "_id": "62dd5fdac33f9cb60bf668ad",
+          "name": "omlab",
+          "fullname": "OmAI Lab",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/5f0de36419cb630495b8153c/0T0ttw9sIEIerOZ1L1Zfm.png"
+        },
+        "upvotes": 3,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.22237",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 25,
+      "score": 2.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "686df54910a52f2c2cf03c06",
+          "name": "SamsungResearch",
+          "fullname": "Samsung Research",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/60ffc3e62403168abcae811d/lBrkzrpjrJ8k-3CGLKRLr.jpeg"
+        },
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.28327",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 26,
+      "score": 2.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/AndreiiArhire/LightMIS",
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.30837",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 27,
+      "score": 2.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/TURLEing/MOPD-Router",
+        "organization": {
+          "_id": "630bc2d186b8b9904c33ce1b",
+          "name": "GAIR",
+          "fullname": "SII - GAIR",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/6144a0c4ff1146bbd84d9865/NqAuVddq2ci-AsFcFNbav.png"
+        },
+        "upvotes": 2,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.30867",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 28,
+      "score": 2.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/yonghongzhang-io/ARGUS",
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2608.09444",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 29,
+      "score": 2.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/kschwethelm/continuous-depth-batching",
+        "organization": {
+          "_id": "61fae781e68759322b9767be",
+          "name": "TUM",
+          "fullname": "Technical University of Munich",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/1661167219960-629521a0f937190946e15d7f.jpeg"
+        },
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.31002",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 30,
+      "score": 2.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.29474",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 31,
+      "score": 1.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/halykoss/CodeGraph",
+        "upvotes": 1,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2604.02103",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 32,
+      "score": 1.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/jinsu0000/cashg-official",
+        "organization": {
+          "_id": "673e02a4628df407b5850fa8",
+          "name": "SUNGKYUNARCH",
+          "fullname": "Sungkyunkwan University",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/673dffb28322f5b4ac9a2970/TNnv8XLV7Y6y5adITeq9c.jpeg"
+        },
+        "upvotes": 1,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2609.23551",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-09-28",
+      "rank": 33,
+      "score": 1.0,
+      "observed_at": "2026-09-29T10:30:16.854427+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/ShuyangenFrance/hrope",
+        "upvotes": 1,
+        "num_comments": 2
+      }
+    }
+  ]
+}
