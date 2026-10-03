@@ -9,3 +9,6 @@ dist/
 .env
 .env.*
 !.env.example
+node_modules/
+.git-rules-backups/
+/install.bat
