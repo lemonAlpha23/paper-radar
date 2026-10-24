@@ -31,7 +31,7 @@ TELEGRAM_CHAT_ID=你的聊天ID
 
 `SUMMARY_MODEL` 留空使用项目默认模型 `deepseek-flash`，其余配置通常保持默认即可。
 
-**抓取昨天的论文 → 中文介绍 → Telegram 推送：**
+**抓取昨天的论文 → 中文介绍 → 平台推送：**
 
 ```sh
 uv run paper-radar crawl huggingface daily --summarize --notify telegram
