@@ -1,0 +1,610 @@
+{
+  "schema_version": 2,
+  "task": {
+    "source": "huggingface",
+    "period": "daily",
+    "target": "2026-10-29"
+  },
+  "fetched_at": "2026-10-30T18:45:55.167822+08:00",
+  "papers": [
+    {
+      "canonical_id": "arxiv:2610.32749",
+      "title": "Efficient Streaming Audio-Visual Target Speaker Extraction for Real-World Acoustic Scenes",
+      "authors": [
+        "Wendi Sang",
+        "Kai Li",
+        "Yifan Li",
+        "Jianqiang Huang",
+        "Xiaolin Hu"
+      ],
+      "abstract": "Streaming audio-visual target speaker extraction (AVTSE) is essential for latency-sensitive applications. However, current causal systems face two coupled gaps. First, standard benchmarks fix the number of speakers at two and ignore the near-/far-field interference, reverberation, and sudden noise of real scenes. Second, high-performance causal architectures are too heavy for edge deployment. Lightweight alternatives try to reclaim capacity by repeatedly invoking a small separator, which offsets the savings. To address the first gap, we release RealSSA, a realistic AVTSE benchmark consisting of RealSSA-Sim and RealSSA-Real. RealSSA-Sim provides controllable simulated scenes with 1--5 dynamic near-field interfering speakers; scenes with far-field interference additionally include 10--15 far-field interfering speakers. RealSSA-Real provides a held-out real-recorded evaluation set. To address the second gap, we propose Falcon, a causal AVTSE method. Its Separator performs multi-scale time-frequency separation in a single encoder--decoder pass. We train Falcon with an encoder-space speaker contrastive loss. This loss suppresses near-field leakage at zero inference cost and transfers across backbones. Falcon achieves state-of-the-art extraction quality on RealSSA-Sim, LRS2-2Mix, LRS3-2Mix, and VoxCeleb2-2Mix. Compared with the causal AV-TFGridNet baseline, it cuts parameters by 91.9%, computation by 20.2 times, and GPU inference latency by 11.1 times. Code and demo are available at https://cslikai.cn/Falcon/.",
+      "published_at": "2026-10-23T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.32749"
+    },
+    {
+      "canonical_id": "arxiv:2610.35684",
+      "title": "OmniShowcase: Omnidirectional Subject-Consistent Video Generation from Multi-View Images",
+      "authors": [
+        "Junyeong Ahn",
+        "Geonwoo Kim",
+        "Kinam Kim",
+        "Gihwi Kim",
+        "Hoonjin Jung",
+        "Hyojin Jang",
+        "Jaegul Choo"
+      ],
+      "abstract": "Generating videos of a specific subject from a few reference images remains challenging when the camera reveals surfaces that are not visible in the input. Early subject-to-video (S2V) methods condition on a single reference image and must therefore infer the subject's unseen appearance and geometry as the viewpoint changes. To address this limitation, recent methods extend S2V to multiple reference views, providing more information about the subject from different viewpoints. However, they do not explicitly specify the 3D structure that connects these observations. In addition, existing training data do not guarantee that viewpoint changes preserve the same underlying 3D subject. We present OmniShowcase, built on two components: (i) a fully automated data synthesis pipeline that produces training videos along diverse camera trajectories, with viewpoint variation driven by underlying subject geometry, even spanning full 360-degree orbits; and (ii) a geometry-conditioning method that provides the video model with a turntable of surface-normal maps reconstructed from the reference views without requiring temporal alignment with the generated frames. We construct Showcase-4K, a corpus of 3D-asset-based videos covering twelve camera motions across 88 trajectory configurations with reconstruction-derived surface-normal conditioning, and ShowcaseBench, a held-out evaluation set with the source meshes and camera parameters used to render each video. Experiments show state-of-the-art subject identity and 3D consistency while maintaining competitive video quality and motion. Project page: justin4ai.github.io/OmniShowcase",
+      "published_at": "2026-10-26T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.35684"
+    },
+    {
+      "canonical_id": "arxiv:2610.31670",
+      "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
+      "authors": [
+        "Yunfei Xie",
+        "Howard H. Qian",
+        "Shiyi Lan",
+        "Kaiyu Hang",
+        "Chen Wei"
+      ],
+      "abstract": "Robot foundation models are typically evaluated through costly closed-loop rollouts, motivating low-cost offline proxies for model capability. The Platonic Representation Hypothesis (PRH) suggests that as representations improve, modalities such as vision and language converge toward a shared statistical model of reality. We ask whether motion trajectories form another such modality: as embodied models become more capable, should their sensory representations converge toward the structure of physical motion? To test this, we propose Sensorimotor Alignment (S^2), a training-free offline metric that measures how well a model's sensory representation aligns with the geometry of physical motion. We find that S^2 correlates positively with downstream robot task success across model families, making it a low-cost offline proxy for prioritizing models before closed-loop evaluation. S^2 can also identify promising vision-language model (VLM) backbones before costly fine-tuning into vision-language-action models (VLAs). Beyond this correlation, S^2 offers representation-level explanations for phenomena observed in VLAs and world action models (WAMs). With S^2, we extend PRH to robotics and make sensorimotor alignment measurable, offering a low-cost, representation-level view of robot foundation models that closed-loop success rates alone cannot reveal.",
+      "published_at": "2026-10-23T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.31670"
+    },
+    {
+      "canonical_id": "arxiv:2610.37230",
+      "title": "TAO: Tool-Aware Joint Scheduling for LLM-Based Agentic Serving",
+      "authors": [
+        "Shuhuai Li",
+        "Shengdong Ye",
+        "Dongdong Ge",
+        "Yinyu Ye",
+        "Jianghao Lin"
+      ],
+      "abstract": "Agentic services alternate between model inference on clustered GPUs and external tools on distributed CPUs. In this scenario, existing systems (1) overlook tool-return readiness in service evaluation, wasting limited resources, and (2) use heuristic strategies to decide admission and placement on GPUs, resulting in suboptimal scheduling decisions. To bridge this gap, we present TAO, a tool-aware joint scheduling framework for LLM-based agentic serving. Its value interface combines near-term tool readiness, node-specific cache credit with time-aware decay, and token footprint; a dynamic program jointly selects and places waiting sessions under capacity constraints. Across the 12 reported model-workload-concurrency settings, TAO reduces latency by up to 26.8%, reduces mean time to first token (TTFT) by up to 36.3%, and increases decode throughput by up to 29.5% relative to the best evaluated state-of-the-art baseline for each metric.",
+      "published_at": "2026-10-27T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.37230"
+    },
+    {
+      "canonical_id": "arxiv:2610.22507",
+      "title": "RealCLI: Toward a Unified Evaluation of Human-Agent Collaboration for CLI Agents",
+      "authors": [
+        "Yunqi Liu",
+        "Peiyu Wang",
+        "Bingli Wang",
+        "Leo Luo",
+        "Xuanwu Song",
+        "Xudong Ma",
+        "Hongxin Li",
+        "Yaxin Du",
+        "Weicheng Gu",
+        "Fanglin Xu",
+        "Yi Xing",
+        "XiangLong Liu",
+        "Jujie He",
+        "Zhange Zhang",
+        "Huatong Song",
+        "Zhaoyi Li",
+        "Deyang Kong",
+        "Chuan Hao",
+        "Peihao Wu",
+        "Mingjie Tang",
+        "Ran Tao",
+        "Jian Yang",
+        "Wayne Xin Zhao",
+        "Bryan Dai"
+      ],
+      "abstract": "Command-line interface (CLI) agents increasingly execute longer-horizon tasks, yet existing benchmarks either assume that user instructions remain fixed throughout execution or evaluate task outcomes without capturing runtime collaboration quality. In this paper, we present REALCLI, a paired benchmark that unifies the evaluation of task execution and human-agent collaboration quality on realistic CLI tasks. To comprehensively measure collaboration, REALCLI builds a five-dimensional framework, operationalized into 22 sub-dimensions and 51 interaction scenario templates. REALCLI provides two modes for paired comparison: REALCLI-EXEC supplies complete specifications upfront, whereas REALCLI-COLLAB introduces a scripted user that delivers progressive information, corrections, constraint revisions, and authorization decisions. Evaluations reveal profound capability gaps in frontier agents: the best configuration attains an average score of only 49.2%, and when evaluated by the joint collaboration score (J_{collab}), the peak performance reaches merely 37.6%. These results show that task effectiveness diverges sharply from collaboration quality, with models consistently struggling in steerability, trust calibration, and safety boundary management. REALCLI provides a rigorous, reproducible foundation for measuring and advancing collaborative CLI agents.",
+      "published_at": "2026-10-15T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.22507"
+    },
+    {
+      "canonical_id": "arxiv:2610.22990",
+      "title": "PersonaCUABench: Benchmarking Computer-Use Agents Serving Diverse Personas",
+      "authors": [
+        "Haoming Li",
+        "Defu Cao",
+        "Xu Hu",
+        "Yingtao Luo",
+        "Yiyang Wang",
+        "Xianghe Xu",
+        "Jiashu He",
+        "Wanting Jiang",
+        "Yifan Zhang",
+        "Yunhan Zhao",
+        "Siyang Wu",
+        "Chen Yang",
+        "Haixin Wang",
+        "Zheyuan Deng",
+        "Taoran Li",
+        "Jingwen Zhang",
+        "Zhejian Peng",
+        "Shushu Liang",
+        "Yue Zhao",
+        "Bingzhe Li",
+        "Feng Chen",
+        "Yifan Wang",
+        "Jintao Huang",
+        "Yijun Wang",
+        "Yuexing Hao",
+        "Xiaomin Li"
+      ],
+      "abstract": "Computer-use agents (CUAs) are commonly evaluated against fixed task specifications, but users may omit requirements, add constraints, or require approval before consequential actions. Completing the benchmark instruction does not guarantee serving the person who asked. We introduce PersonaCUABench, which holds 74 tasks across 11 domains fixed and varies only who asks. A persona agent, playing one of 44 personas in four groups, rewrites each instruction in that user's own words and answers the CUA's questions, while the CUA sees only the dialogue, never the profile or the original instruction. Across nine backbones (3,330 runs), mean task completion falls by 36% relative to the original requests. The losses have two sources: in 59.9% of cells that lose points, the agent engages with what the user asked for and still gets it wrong, and 11.2% are stops the user requested that the checker scores as failures. Even when a persona request is fully completed, the user gives the top satisfaction rating in only 62.7% of cells, against 84.1% for the original requests. CUAs should therefore be evaluated not only on task completion but also on whether they meet the requirements and constraints users express. Code: https://github.com/MatrAIx-ai/PersonaCUABench. Project page: https://matraix.ai/research/persona-cua.html",
+      "published_at": "2026-10-16T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.22990"
+    },
+    {
+      "canonical_id": "arxiv:2610.30161",
+      "title": "TauIndianBankBench: Procedure-Aware, Action-Oriented Evaluation of Tool-Using Conversational Agents",
+      "authors": [
+        "Krishanu Adhikary",
+        "Prashant Devadiga"
+      ],
+      "abstract": "Many Indian banks serve customers through FAQ pages and scripted chatbots. Assistants based on language models could respond faster and carry out requests such as blocking a card, but only if they give correct information and follow the bank's rules. These rules prescribe a procedure, a set of required steps, such as obtaining a closure quote before closing a deposit. Adapting models to this domain requires measuring how well they follow the procedure, before and after training. Benchmarks usually judge only the records left at the end of a conversation. Many required steps, however, leave the records unchanged, so an assistant that skips them can still be judged successful. We present TauIndianBankBench, an action-oriented benchmark of 1,000 Indian retail-banking tasks where an assistant helps a simulated customer. Besides the final records, it checks that the assistant took every required step and made no unrequested change. For every model, 6.5-12.0% of sessions are judged successful when only the final records are checked, although the assistant skipped a required step or made an unrequested change. Scoring both procedure and outcome shows more accurately how well language models perform in Indian retail banking.",
+      "published_at": "2026-09-30T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.30161"
+    },
+    {
+      "canonical_id": "arxiv:2610.20832",
+      "title": "Amortizing Sequential Experimental Design in Reasoning LLMs",
+      "authors": [
+        "Anita Kriz",
+        "Antonin Berthon",
+        "Nicolás Astorga",
+        "Mihaela van der Schaar"
+      ],
+      "abstract": "Despite their extensive pretraining knowledge and strong reasoning capabilities, large language models (LLMs) struggle to adaptively gather information in experimental design tasks. We study how to amortize sequential Bayesian experimental design (BED) into an LLM by explicitly training the reasoning that guides action selection using information-gain rewards. Our approach specifies the experimental generative model independently of the LLM's own beliefs, allowing us to optimize expected information gain under a model of our choosing. We investigate the design choices for amortization, including alternative generative-model constructions, reward estimation, hypothesis-space specification, multi-step objectives, and computational costs relative to training- and inference-time BED baselines. On Twenty Questions, the resulting policies improve information acquisition and task performance, outperform inference- and training-time BED baselines at substantially lower computational cost, and generalize to unseen categories. We further demonstrate positive transfer from Twenty Questions training to Medi-Q, a real-world clinical dialogue benchmark. These results suggest that information gathering can be learned as a generalizable reasoning skill in LLMs.",
+      "published_at": "2026-10-14T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.20832"
+    },
+    {
+      "canonical_id": "arxiv:2610.30132",
+      "title": "LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data",
+      "authors": [
+        "Zhennan Wan",
+        "Jianfei Chen"
+      ],
+      "abstract": "Reinforcement learning (RL) is an effective way to strengthen the long-context reasoning of large language models (LLMs), but it needs training data that are long, diverse, challenging, and verifiable. Human annotation of such data is expensive, naturally occurring data are too scarce to sustain RL, and existing synthesis methods depend on external corpora or stronger teacher models, which become harder to obtain as the trained models get stronger. Recently, RL from zero data, in which a model learns from tasks it proposes itself, has achieved excellent performance, but existing methods target short-context tasks. Therefore, we propose LongZero, a method that lets an LLM improve its own long-context reasoning without any external data. Instead of writing questions and answers over existing documents, LongZero first has the model synthesize the question and answer with its supporting evidence in a compact structured form, and only then separately expands the evidence into a long multi-document context. LongZero combines these self-written multi-hop reasoning tasks with self-written multi-round retrieval tasks and trains the model with GRPO. We evaluate LongZero on two LLMs across five long-context reasoning benchmarks and compare it with RL on data synthesized from external corpora. Experimental results show that LongZero can generalize to real tasks, and outperforms both baselines, suggesting a viable and promising path to improving long-context reasoning of LLMs.",
+      "published_at": "2026-10-21T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.30132"
+    },
+    {
+      "canonical_id": "arxiv:2610.35671",
+      "title": "Evaluating DeepSeek V4.1 Flash-1017 for loss of control and harmful manipulation risks",
+      "authors": [
+        "Yao Huang",
+        "Zhiyuan Zeng",
+        "Yu Wang",
+        "Zhitong Zhu",
+        "Dingcheng Duan",
+        "Hao Li",
+        "Shangzhi Xu",
+        "Yifan Wang",
+        "Jinzhe Tu",
+        "Shukun Xiong",
+        "Yihe Zang",
+        "Han Yan",
+        "Hongchang Yang",
+        "Fuyu Gu",
+        "Wei Xu",
+        "Yinpeng Dong",
+        "Xiaojian Li"
+      ],
+      "abstract": "As frontier language models grow increasingly capable and autonomous, independent third-party evaluations are critical for characterizing their systemic safety risks. While closed-source releases are routinely accompanied by comprehensive system cards, open-weight models receive less scrutiny regarding frontier risks. To address this gap, we present an independent safety evaluation of DeepSeek V4.1 Flash-1017, the latest version of V4.1 Flash that departs from V4 with a new architecture, scaled-up training, and strong agentic capabilities. Drawing on the EU General-Purpose AI Code of Practice, we evaluate the model across 34 benchmarks, including 5 in-house suites, spanning evaluation integrity, loss of control, and harmful manipulation. Conforming to the AEF-1 standard, we compare V4.1 Flash-1017 against V4.1 Flash, earlier DeepSeek V4 models, and leading closed-source systems (GPT-6 Astra, GPT-5.6 Sol, and Gemini 3.8 Flash). Overall, V4.1 Flash-1017 shows substantial safety improvements over the V4 generation and approaches or matches leading closed-source baselines on several dimensions, while still exhibiting notable behaviors that warrant continued attention. Building on our findings, we highlight three key observations and recommendations. First, because safety can shift and even regress across minor updates, developers should integrate safety evaluation into incremental releases. Second, as final-turn outputs and end-state checks alone cannot reliably detect loss-of-control behaviors, deployments require process-level observability across both reasoning traces and action logs. Third, because public benchmarks elicit strong evaluation awareness and face data contamination risks, developing private benchmarks is essential for trustworthy frontier evaluation.",
+      "published_at": "2026-10-26T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.35671"
+    },
+    {
+      "canonical_id": "arxiv:2610.29702",
+      "title": "CausGround: Causal Interaction Grounding for Adaptive Embodied Planning",
+      "authors": [
+        "Yijun Shen",
+        "Diqi He",
+        "Jinbang Guo",
+        "Wanyue Zhang",
+        "Jiaming Mi",
+        "Huan Yang",
+        "Zhongyuan Wang",
+        "Zhiwei Yu",
+        "Kai Zhang"
+      ],
+      "abstract": "Multimodal large language models (MLLMs) show promising reasoning capabilities, but reliable physical interaction requires planning that accounts for when actions are executable and how they change the world. These preconditions and effects are environment-dependent and often not captured by MLLMs, making adaptation challenging. Yet existing approaches either require costly environment-specific training or rely on unstructured interaction experience that is difficult to reuse. Therefore, we introduce CausGround, a non-parametric causal interaction grounding framework that distills interaction experience into reusable action-centered causal knowledge. CausGround identifies action preconditions and effects and organizes them in a factorized world-state representation capturing object attributes and inter-object relations. At planning time, task-relevant causal dependencies are grounded in current observations to support backward reasoning over preconditions and forward reasoning over effects for action selection and multi-step planning. We evaluate CausGround on simulated high-level planning, interaction reasoning, and real-world robot manipulation. On adapted VirtualHome and RoboCasa benchmarks, CausGround improves vision-based high-level planning across MLLM backbones, increasing average task success from 24.9% to 53.3% on VirtualHome and closed-loop planning success from 43.0% to 57.0% on RoboCasa. On SWITCH, average interaction reasoning accuracy increases from 25.8% to 31.9%, indicating improved action selection, recovery, and verification. Moreover, real-world experiments show that CausGround reasons backward from MLLM-interpreted goals to derive executable high-level action sequences for sequential manipulation. These results demonstrate that reusable action preconditions and effects support long-horizon embodied planning across diverse environments without parameter updates.",
+      "published_at": "2026-10-21T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.29702"
+    },
+    {
+      "canonical_id": "arxiv:2610.27100",
+      "title": "LOB-Impact Benchmark: Emergent Market Impact in Generative Limit Order Book Models",
+      "authors": [
+        "George Nigmatulin",
+        "Valentin Mohl",
+        "Sascha Frey",
+        "Kang Li",
+        "Aramis Marti-Shahandeh",
+        "Mihai Cucuringu",
+        "Anisoara Calinescu",
+        "Jakob Foerster",
+        "Stefan Zohren"
+      ],
+      "abstract": "Realistic market impact is essential for generative limit order book (LOB) models to serve as world models for trading agents. If a simulator misprices this mechanism, agents learn policies that are optimal in the simulator but wrong in the real market. Existing metrics assess generated streams purely through distributional comparison with historical data, leaving counterfactual response to an agent's own orders largely unexplored. Here, we show that market impact emerges naturally in neural LOB generators trained solely for next-token prediction. We inject execution-style metaorders into the generated message flow of five autoregressive models across five NASDAQ stocks and measure the response using estimators from the empirical impact literature, validated on baselines whose physics is known in advance. Our benchmark evaluates any message-level generator in three phases: free generation (reading order-flow persistence against price diffusivity); metaorder injection (yielding the impact law's exponent and amplitude); and a post-execution window (measuring relaxation). In addition, comparing each visible injection to a blind, simulator-only control isolates the model's learned response from standard book mechanics. For every model on every stock, we measure how the impact responds as a function of cumulative metaorder participation. Interestingly, we observe emergent impact in generative models of market data, with exponents in the range of 0.63 to 1.21, slightly above the traditional 0.5 of the square-root law of impact. In the family of models tested, we are so far unable to observe impact decay during relaxation. We tentatively attribute this to the still-short context windows of the models. We release the benchmark as open source to validate future generative models for market data.",
+      "published_at": "2026-10-19T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.27100"
+    },
+    {
+      "canonical_id": "arxiv:2610.33645",
+      "title": "PreView: Enhancing GUI Grounding with Preprocessed Views and Cues",
+      "authors": [
+        "Wenjun Hou",
+        "Kaishuai Xu"
+      ],
+      "abstract": "GUI grounding requires locating small controls in cluttered screenshots and identifying which control a natural-language instruction refers to. Cropping and enlargement can expose local detail, but the resulting image may still leave ambiguity about the intended target. We propose PreView, an auxiliary preprocessor that improves the inputs to an existing grounding model without further training that model. PreView prepares two complementary types of input features: task-relevant views for localization and candidate-specific cues for target understanding. A trained lightweight auxiliary model predicts and refines a center, crops the screenshot into a local view, and enlarges that view for zoomed-in grounding. It also prepares a visual cue (i.e., a red-circle marker with a location hint) and a textual cue describing the candidate's identity or function. The frozen grounding model uses the prepared inputs to predict the final click. Across five benchmarks, PreView improves the average grounding accuracy of Qwen3-VL-2B, OS-Atlas-4B, and Qwen3-VL-4B without further training these grounding models. Extensive analyses examine the contributions of views and cues, center refinement, and visual input budgets.",
+      "published_at": "2026-10-24T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.33645"
+    },
+    {
+      "canonical_id": "arxiv:2610.37626",
+      "title": "Know, then Draw: A New Learning Paradigm for Visual Generation",
+      "authors": [
+        "Yucheng Mao",
+        "Chongjian Ge",
+        "Zhuowen Tu",
+        "Hao Tan",
+        "Hanwen Jiang"
+      ],
+      "abstract": "Visual generation requires both high-level semantic knowledge and fine-grained pixel details. We propose a learning paradigm that assigns these roles to autoregressive pretraining for knowledge acquisition and diffusion post-training for high-fidelity rendering. Within this framework, we study the objective, representation, and scaling of knowledge acquisition and rendering. Controlled comparisons identify autoregression as the stronger pretraining objective for downstream rendering, improving both learning efficiency and final generation quality. We further find that AR-only generation quality does not necessarily correlate with final performance; semantic quality matters more. This motivates a purely semantic tokenizer trained with language supervision alone, without an image decoder or reconstruction loss. We establish compute-optimal scaling laws for knowledge acquisition and rendering, and find that autoregressive pretraining lowers the fitted asymptotic rendering loss compared with pixel diffusion models trained from scratch. Guided by the laws, we train a 3B-parameter text-to-image model with only 6,600 H100 GPU-hours, achieving 86 on GenEval and 87 on DPG-Bench and validating the proposed paradigm at scale.",
+      "published_at": "2026-10-27T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.37626"
+    },
+    {
+      "canonical_id": "arxiv:2610.36095",
+      "title": "Instruction Capacity: Behavior and Degradation of Language Models under Controlled Load",
+      "authors": [
+        "Hennadii Kutomanov"
+      ],
+      "abstract": "The quality with which language models follow instructions falls as the load grows, yet there is still no quantity that expresses the limit of a model in units of load with an uncertainty. We propose an instrument in which the load consists of rules that replace single-token words in a text without meaning: such an instruction is atomic, the rules are independent by the construction of the task, and the outcome of every application of a rule is determined by a computable reference answer. Every occurrence of a word to be replaced becomes a Bernoulli trial with a known position in the answer and a known rule number. The statistical model first measures the shape of the dependence of the probability of a right replacement on the text length, the word position, the replacement density, the number of rules and the rule number, then describes it by smooth laws and restores a reference level that does not depend on the choice of the coding. The model yields the instruction capacity - the number of rules held at a given share of right replacements - with an uncertainty. A measurement of GPT-4o mini (2958 requests, 642,430 trials) gave regular laws for every load factor and for the collapse of the answer; the instruction capacity was about 37-38 rules at a share of right replacements of 0.95, and about 18-19 rules at the full replacement density. The code of the instrument, the measurement data and the passport are open, and every number of the passport is recomputed from the published points. The passport of a model serves as the calibration of a future meter of the instruction load of prompts.",
+      "published_at": "2026-10-26T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.36095"
+    },
+    {
+      "canonical_id": "arxiv:2610.34186",
+      "title": "HuGe: Scaling Humanoid Generalist Vision-Language-Action Models with Egocentric Experience",
+      "authors": [
+        "Yang Liu",
+        "Jiacheng Liu",
+        "Hengtao Li",
+        "Yuheng Huang",
+        "Zijian Yang",
+        "Ji Dai",
+        "Maoxin Wang",
+        "Yi Gao",
+        "Qishen Wang",
+        "Baohua Yin",
+        "Peiyang Li",
+        "Shuanghao Bai",
+        "Mingyang Sun",
+        "Pengxiang Ding",
+        "Jianqin Yin",
+        "Lixin Yang",
+        "Donglin Wang"
+      ],
+      "abstract": "Extending Vision-Language-Action models (VLAs) to humanoid robots requires coordinated whole-body control and diverse demonstrations that are costly to collect in real-world scenarios. Although egocentric human demonstrations provide a complementary source of task experience, differences in visual embodiment and missing robot proprioception complicate transfer to humanoid policies. To address these challenges, we introduce HuGe, a family of Humanoid Generalist VLAs pre-trained on over 2,000 hours of egocentric human and robot data. Specifically, HuGe employs three existing representative VLA architectures to predict latent motion tokens for a pretrained whole-body controller, together with hand-control signals. Based on this, we introduce a three-stage training pipeline that combines egocentric pre-training, humanoid adaptation, and downstream fine-tuning. To facilitate transfer across embodiments, we construct pseudo-proprioceptive states through simulation playback during pre-training and modify arm appearance in egocentric observations through re-rendering during downstream fine-tuning. With this pipeline, HuGe achieves the state-of-the-art on simulation benchmark HumanoidArena. Furthermore, real-world experiments on the Unitree G1 indicate that augmenting robot demonstrations with visually adapted egocentric demonstrations significantly increases success on a pick-and-drop task.",
+      "published_at": "2026-10-25T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2610.34186"
+    },
+    {
+      "canonical_id": "arxiv:2601.15351",
+      "title": "OmniSpectra: A Unified Foundation Model for Universal Spectra Representation Learning",
+      "authors": [
+        "Md Khairul Islam",
+        "Zeyu Xia",
+        "Adam S. Bolton",
+        "Judy Fox"
+      ],
+      "abstract": "Standard sequence models encode position by token rank rather than physical coordinate, typically forcing practitioners to destructively resample continuous physical signals such as spectra observed across heterogeneous instruments. We identify this coordinate mismatch as a structural limitation in cross-instrument representation learning, and propose OmniSpectra, a wavelength-native foundation model for spectral representation learning: a continuous-coordinate masked autoencoder that discards the integer pixel indexing of sequence modeling. Mapping physical coordinates to a logarithmic basis turns the multiplicative scaling induced by cosmological redshift into a uniform additive shift. In continuous rotary position embeddings, this shared shift cancels from relative token distances rather than producing grid-dependent positional distortion. We further counter the spectral bias inherent to implicit neural decoders with a physics-grounded, resolution-gated Fourier decoder that provides anti-aliasing. Pretrained on eight surveys and benchmarked against seven baselines, our model reaches state-of-the-art performance with only 12.2M parameters while outperforming substantially larger models, indicating that encoding physical structure can substitute for parameter scale.",
+      "published_at": "2026-10-23T00:00:00+00:00",
+      "url": "https://huggingface.co/papers/2601.15351"
+    }
+  ],
+  "observations": [
+    {
+      "paper_id": "arxiv:2610.32749",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 1,
+      "score": 152.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/JusperLee/Falcon",
+        "projectPage": "https://cslikai.cn/Falcon/",
+        "organization": {
+          "_id": "640d3084536d9fe0f005cac3",
+          "name": "thu-ml",
+          "fullname": "Tsinghua Machine Learning Group",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/1678587085174-633131798ef21f47308ce49b.jpeg"
+        },
+        "upvotes": 152,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.35684",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 2,
+      "score": 51.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/justin4ai/OmniShowcase",
+        "projectPage": "https://justin4ai.github.io/OmniShowcase/",
+        "organization": {
+          "_id": "6475760c33192631bad2bb38",
+          "name": "kaist-ai",
+          "fullname": "KAIST AI",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/6469949654873f0043b09c22/aaZFiyXe1qR-Dmy_xq67m.png"
+        },
+        "upvotes": 51,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.31670",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 3,
+      "score": 21.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/yunfeixie233/sensorimotor-alignment",
+        "projectPage": "https://yunfeixie233.github.io/s2/",
+        "organization": {
+          "_id": "674fce4ce838eaae7482802e",
+          "name": "RiceUniversity",
+          "fullname": "Rice University",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/6630443e246247eeadf6e565/RsWYMEcEsnef5OsxZAZpp.png"
+        },
+        "upvotes": 21,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.37230",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 4,
+      "score": 18.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "6a914351ceb09c999ea12f84",
+          "name": "AIOR-Research",
+          "fullname": "AIOR",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/63f33193520c146189241780/UyBZGY7cm0LlIbu8qm0H4.png"
+        },
+        "upvotes": 18,
+        "num_comments": 4
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.22507",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 5,
+      "score": 17.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "6937e1578cd2568ba4c9d3f9",
+          "name": "IQuestLab",
+          "fullname": "IQuest",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/68c80cc3a1ca9a73c17d29f7/pjOEigZuk_UQ4dqyS482V.png"
+        },
+        "upvotes": 17,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.22990",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 6,
+      "score": 14.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/MatrAIx-ai/PersonaCUABench",
+        "projectPage": "https://matraix.ai/research/persona-cua.html",
+        "upvotes": 14,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.30161",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 7,
+      "score": 9.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/npci/TauIndianBankBench",
+        "organization": {
+          "_id": "69842b03a289b72fb05279be",
+          "name": "NPCI",
+          "fullname": "National Payments Corporation of India",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/698429270765e1c471552aa5/c_g5oaMFQVDLPibSTVrTQ.png"
+        },
+        "upvotes": 9,
+        "num_comments": 3
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.20832",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 8,
+      "score": 6.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/anitakriz/ar-bed",
+        "organization": {
+          "_id": "65f9e02087d1c912d985eebf",
+          "name": "CambUni",
+          "fullname": "University of Cambridge",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/noauth/gdCou-0KoYsLPYqPrz6xn.png"
+        },
+        "upvotes": 6,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.30132",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 9,
+      "score": 6.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/zhennan1/LongZero",
+        "organization": {
+          "_id": "628735cbc83a2d6ab8d14a66",
+          "name": "Tsinghua",
+          "fullname": "Tsinghua University",
+          "avatar": "https://www.gravatar.com/avatar/6c5c1441e3283e7543342e59277ea219?d=retro&size=100"
+        },
+        "upvotes": 6,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.35671",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 10,
+      "score": 4.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "organization": {
+          "_id": "6ae31c597c74bab34a3adb32",
+          "name": "FangcunAI",
+          "fullname": "Fangcun AI",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/6ae31b4b9e2a17d198fc9f8b/heEA2NJqeZ1_GqZHPUUT0.png"
+        },
+        "upvotes": 4,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.29702",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 11,
+      "score": 4.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/Intelligent-Interaction/CausGround",
+        "projectPage": "https://causground.github.io/",
+        "upvotes": 4,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.27100",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 12,
+      "score": 3.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/george-nigmatulin/lob_impact",
+        "projectPage": "https://george-nigmatulin.github.io/lob_impact/",
+        "organization": {
+          "_id": "6a824ce6133e4a50d69b85cd",
+          "name": "oxford-lob",
+          "fullname": "BOLD-Quant-Team",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/6669bf790fb5c7d1658df3ab/nhlbwQW2bKdtD-1Mc5ySa.png"
+        },
+        "upvotes": 3,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.33645",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 13,
+      "score": 2.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "upvotes": 2,
+        "num_comments": 1
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.37626",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 14,
+      "score": 2.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.36095",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 15,
+      "score": 2.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/kutomanovhennadii/instruction-capacity",
+        "projectPage": "https://huggingface.co/spaces/kutomanovhennadii/iec-instrument",
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2610.34186",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 16,
+      "score": 2.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "githubRepo": "https://github.com/yliu-cs/HuGe",
+        "projectPage": "https://yliu-cs.github.io/HuGe",
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    },
+    {
+      "paper_id": "arxiv:2601.15351",
+      "source": "huggingface",
+      "period": "daily",
+      "target": "2026-10-29",
+      "rank": 17,
+      "score": 2.0,
+      "observed_at": "2026-10-30T10:45:55.167822+00:00",
+      "metadata": {
+        "upvotes": 2,
+        "num_comments": 2
+      }
+    }
+  ]
+}
