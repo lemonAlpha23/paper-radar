@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "task": {
+    "source": "huggingface",
+    "period": "daily",
+    "target": "2026-11-12"
+  },
+  "source_fetched_at": "2026-11-13T01:48:28.557658+08:00",
+  "summarized_at": "2026-11-13T01:49:13.727410+08:00",
+  "language": "zh-CN",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "base_url": "https://api.deepseek.com",
+  "status": "partial_failure",
+  "papers": [
+    {
+      "paper_id": "arxiv:2610.40394",
+      "original_title": "Scaling Mathematical Proof Supervision from Structured Textbooks",
+      "status": "success",
+      "content": {
+        "title_zh": "从结构清晰的教科书中扩大数学证明的监督数据",
+        "summary_zh": "以往训练语言模型学数学时，常把题目和答案拆成互不关联的配对，丢掉了教科书原有的章节顺序和证明之间的引用关系。这项研究把2118本大学数学教科书转成约38万条保留了章节、命题与证明链接等结构的记录，并用这些结构信息做了课程顺序学习和规模测试。结果显示，全部数据微调后，模型在留出测试和公开基准上的平均得分比原始模型高16.7个百分点，也超过了对比的三种公开指令数据。这说明教科书的结构化整理既能提供大量数学训练材料，也能帮我们研究数据组织方式对数学推理的影响。",
+        "key_points": [
+          "把教科书按章节顺序和证明依赖关系组织成训练数据，比拆散的题目-答案对更有效。",
+          "用全部结构化数据微调后，模型在多项数学测试上的平均得分提升了16.7个百分点，并优于对比的公开指令数据。",
+          "作者将公开这批数据，供进一步研究结构化的数学监督信号。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.13410",
+      "original_title": "SteerDistill: Quantizing LLM Agents via Closed-Loop Teacher Steering",
+      "status": "success",
+      "content": {
+        "title_zh": "SteerDistill：通过闭环教师指导量化LLM智能体",
+        "summary_zh": "量化LLM智能体虽能降低推理成本，但容易忽略任务要求或环境条件，导致行为偏离全精度模型。现有方法难以在学生的失败场景中提供有效纠正。SteerDistill让全精度教师模型在智能体执行失败时介入，指导其修正回答，并利用执行反馈迭代优化指导，然后将这些修正内化到学生模型中，使其能独立推理。在多个基准测试上，该方法平均得分超过最强量化基线1.67-2.18分，接近全精度模型，且训练更高效。",
+        "key_points": [
+          "量化智能体失败时，教师模型介入指导修正，并通过执行反馈不断优化指导内容。",
+          "学生模型学会在修正后的步骤模仿教师指导下的预测，其他步骤模仿全精度教师，从而无需辅助即可推理。",
+          "在五个智能体基准和三个模型上，该方法平均得分比最强量化基线高1.67-2.18分，且与全精度模型差距在1分以内。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2610.39671",
+      "original_title": "Incentivizing Self-Learning in Large Language Models via Reinforcement Learning",
+      "status": "success",
+      "content": {
+        "title_zh": "通过强化学习激励大模型自主学习",
+        "summary_zh": "大模型回答问题时，通常依赖已经记住的知识或临时检索到的资料，但遇到不熟悉的领域，需要一边查资料一边推理。这项研究让模型自己从长篇教材中查找、学习并应用知识，来做数学证明题。作者设计了一个浏览教材的接口，让模型像人一样翻书学习，然后用反馈训练它。在内部和外部教材及科目上，模型证明题准确率从51.5%提高到79.5%，并且比不看书或固定检索的同类方法表现更好。这说明通过反复尝试和反馈，可以培养出通用的自主学习策略，帮助模型解决复杂的长文本任务。",
+        "key_points": [
+          "模型能主动从教材中查找并学习知识，再用来做证明题，而不是只靠记住或一次性检索。",
+          "用强化学习训练后，模型在没见过的教材和科目上也有提升，说明这种学习方式不限于特定领域。",
+          "效果提升是在特定测试任务上得到的，不代表所有情况都有效。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2608.22237",
+      "original_title": "Read Less, Solve More: Token-Efficient Sparse Reading of External Content for AI Agents",
+      "status": "success",
+      "content": {
+        "title_zh": "少读多解：为AI代理高效读取外部内容的稀疏阅读方法",
+        "summary_zh": "AI代理访问网页或文档时，常一次读入大量内容，既耗token又拖慢速度，还容易淹没关键信息。作者设计了一个可重复使用的阅读控制层SparseRead，不修改代理模型本身，而是跟踪阅读需求、选择合适方式定位证据，并限制每次累计读取的原始内容量。在包括Claude Opus 5在内的六个模型和五种场景中测试，总token最多减少92.9%，实际耗时最多减少89.0%，并且在97%的设置下任务质量不变或更好。这意味着代理可以更省资源、更快地完成同样的任务。",
+        "key_points": [
+          "SparseRead不改变代理模型，而是控制读什么、读多少，从而大幅减少token和耗时。",
+          "在大多数测试设置中，减少阅读量没有牺牲任务质量，甚至有所提升。",
+          "该方法能适配不同代理框架，并在网页深度搜索任务中同样有效。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.10193",
+      "original_title": "Ensemble Routing for Prompt-Adaptive Cost-Aware LLM Inference",
+      "status": "success",
+      "content": {
+        "title_zh": "针对提示自适应的成本感知大模型推理的集成路由",
+        "summary_zh": "大模型服务需要在响应质量和推理成本之间取得平衡，但不同请求差异很大。传统路由每个提示只选一个模型，固定集成又无法根据请求调整组合和成本。作者提出 PISA（单模型路由）和 PISA-E（集成路由），通过软聚类和模型能力预测来估计每个模型的表现，再在给定成本-质量偏好下选择集成组合和数量。在四个基准测试中，PISA 在单模型路由中成本-性能综合指标最优；PISA-E 在优先质量时任务表现最好，比最强对比方法高约 2-3 个百分点，在较低成本下也能保持更好表现并降低约 25%-36% 的推理成本。这意味着可以根据每个请求动态选择模型组合，在控制成本的同时提升效果。",
+        "key_points": [
+          "PISA 和 PISA-E 能根据每个提示的特点，预测不同模型的表现，从而动态选择单个模型或多个模型的组合。",
+          "PISA-E 可以在推理时调整成本与质量的偏好，无需重新训练，就能在质量和成本之间灵活权衡。",
+          "在多个测试中，PISA-E 在优先质量时表现优于现有集成方法，在低成本设置下也能保持较好效果并显著降低平均推理成本。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.13028",
+      "original_title": "GTAGym: Real AAA Game Tasks Environment for Evaluation and Reinforcement Learning",
+      "status": "success",
+      "content": {
+        "title_zh": "GTAGym：用《侠盗猎车手5》的正式游戏任务来测试和训练AI",
+        "summary_zh": "在3A游戏里自动检查AI是否完成任务很困难，因为结果难以自动验证，也很难用来训练AI。作者搭建了GTAGym，基于《侠盗猎车手5》的主线任务构建了103个可在线运行的任务和47个射击图片任务，并能自动判定结果。测试发现，表现最好的大模型配置总正确率约70.9%，但空中导航、躲避和拦截仍然很难。作者还提供了批量生成类似任务来训练AI的方法，训练后AI在原本没见过的任务类型上也有提升。",
+        "key_points": [
+          "这个环境能自动判断任务是否完成，不需要人工标注，因此既能测试AI，也能用来训练AI。",
+          "在图片中只给一次指令的测试里，最好的大模型配置正确率约70.9%，但空中导航、躲避和拦截仍是难点。",
+          "用生成的任务训练后，AI在训练时没见过的任务类型上表现也有提高。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.12304",
+      "original_title": "Evolving Infra: Agent-Adaptive LLM Serving at Scale",
+      "status": "success",
+      "content": {
+        "title_zh": "Evolving Infra：面向智能体负载自适应的大规模大模型推理服务",
+        "summary_zh": "智能体（AI 代理）应用让大模型推理需求大增。现有服务系统把“预填充”和“解码”分成两类节点来处理，但运行中很难灵活调整计算分配和缓存管理，导致两类节点负载不均，而且智能体之后还要用的缓存会被提前清掉。作者提出 Evolving Infra，让节点能在两种任务间高效切换，并在线调整分配比例；同时利用智能体的上下文管理信息指导缓存的保留和转移。在编程、数学和电脑操作任务上测试，端到端延迟和首字延迟都有明显改善。",
+        "key_points": [
+          "把计算分配和缓存管理分开，节点可以按需在预填充和解码之间切换，在线匹配任务构成，减少负载不均。",
+          "利用智能体上下文管理的信号来管理分布式缓存，避免清掉智能体之后还要复用的内容。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.12869",
+      "original_title": "Where Does Alignment Emerge and What Does It Mean? A Closer Look at the Platonic Representation Hypothesis",
+      "status": "success",
+      "content": {
+        "title_zh": "对齐在哪里出现？又意味着什么？更仔细地审视柏拉图表示假说",
+        "summary_zh": "有观点认为，不同神经网络（比如语言模型和视觉模型）内部对信息的表示会越来越相似，这被称为柏拉图表示假说。但最近的研究发现，新出的语言模型不一定延续这个趋势，而且比较表示相似度时，模型的大小和层数会干扰结果，需要合理的参照。这项研究仔细查看了单模态模型内部，发现对齐主要出现在某些层和维度上。只要图片描述文字足够干净、信息量足，新模型依然表现出能力越强、表示越接近的趋势。研究还比较了不同模型的表示接近程度，发现单模态模型之间的跨模态接近程度可以超过专门对齐过的视觉-语言模型，但仍明显低于同一种模态模型之间的接近程度。",
+        "key_points": [
+          "研究发现，语言模型和视觉模型的表示相似性主要在特定层和维度上出现，并非整体均匀对齐。",
+          "只要训练用的图片描述文字足够干净、信息充分，新语言模型仍表现出能力越强、表示越接近视觉模型的趋势。",
+          "单独训练的语言模型和视觉模型之间的表示接近程度可以超过专门对齐的视觉-语言模型，但仍远低于同种模态模型之间的接近程度。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.14418",
+      "original_title": "Precision on Demand: Escalating Weight Bits at Uncertain Decoding Steps in a Small Local Model",
+      "status": "success",
+      "content": {
+        "title_zh": "按需精度：本地小模型在不确定的解码步骤提升权重位数",
+        "summary_zh": "本地模型生成文字时通常全程使用同一种权重精度。这项研究换了一种做法：平时用8位权重存储、只取高4位计算，当低精度结果看起来不确定时，再把这一步改用8位重算。作者用一个小模型和数学题测试，通过观察输出分布是否不确定来决定是否提升精度。结果发现，按不确定程度来选步骤，比随机选更容易碰上那些低精度会选错字的情况；但在实际题目上，这种做法的得分和全程高精度或全程低精度相比，还没有拉开明显差距。",
+        "key_points": [
+          "用低精度结果的不确定程度来挑选需要重算的步骤，比随机挑选更能抓住低精度会选错的步骤。",
+          "在实际测试中，这种按需提升精度的做法得分介于全程高精度和全程低精度之间，但数据还不足以证明它明显优于任何一端。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.08286",
+      "original_title": "Interactive Visual Gym: Evaluating Visual Interaction Models with Simulated Users in Interactive Worlds",
+      "status": "failed",
+      "content": null,
+      "error": "Model returned an invalid JSON summary"
+    },
+    {
+      "paper_id": "arxiv:2611.13758",
+      "original_title": "Mixed Signals: Weight-Space Programming for EEG and ECG",
+      "status": "success",
+      "content": {
+        "title_zh": "混合信号：用语言模型直接编写脑电和心电模型参数",
+        "summary_zh": "原来，训练模型通常要靠反复试错来调整参数。这项研究让语言模型直接读取并修改已经训练好的小网络的参数，甚至从零写出全部参数，而不用这种反复试错的过程。针对脑电和心电数据，语言模型能在不知道具体错误的情况下找出模型中的故障，还能只用更少的训练受试者就达到常规训练的效果，在相同数据上甚至比传统手工特征方法得分更高。但它也有局限：无法让已经训练得很好的模型变得更好，也不能只凭参数可靠判断模型原本是做什么任务的。这说明该方法对小型设备上的网络可能有用，但离实际应用还有距离。",
+        "key_points": [
+          "语言模型能直接编写或修改小型脑电、心电模型的参数，在故障排查和从零构建模型上表现出潜力。",
+          "在部分测试中，它用更少的训练数据就达到了常规训练的效果，甚至超过了传统手工特征方法。",
+          "目前它还不能改进已经训练得很好的模型，也不能仅凭参数可靠识别模型的任务。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.08379",
+      "original_title": "Module-Aware Optimization for Graph Neural Networks",
+      "status": "success",
+      "content": {
+        "title_zh": "为图神经网络设计的模块感知优化器",
+        "summary_zh": "训练图神经网络时，常用的优化器如 AdamW 没有考虑图结构传播后的数据特性。Muon 优化器利用矩阵结构，但直接用在图网络上时，图传播会放大更新效果，导致不稳定。作者提出 GraphMuon，根据图传播后的表示调整更新方向和步长，理论上能缓解这种放大。实验显示，在三个大规模图数据集上，达到相同验证损失的速度比 AdamW 快 1.32 到 2.42 倍；在 15 种数据集与网络结构的组合中，13 种情况下更快达到目标，同时预测效果相当或更好。",
+        "key_points": [
+          "GraphMuon 让优化器考虑图传播后的数据特性，防止更新被意外放大，从而训练更稳定。",
+          "在多个图任务上，它比 AdamW 更快达到相同的验证损失，且预测性能不下降。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2607.24999",
+      "original_title": "CogBattery: Human-Referenced Evaluation of Cognitive Task Behavior and Structure in Language Models",
+      "status": "success",
+      "content": {
+        "title_zh": "CogBattery：以人类数据为参照，评估语言模型的认知任务表现与结构",
+        "summary_zh": "语言模型能复现人类在认知任务中的一些趋势，却可能犯不同的错误。CogBattery 用 13 个认知任务的文字版测试了 54 个开源语言模型，并与原始研究中的人类数据对比。结果发现，模型虽然像人一样对干扰项更敏感，但对普通非目标项的误报远多于人；多数模型报告的置信度区分对错的能力不如人，且下注策略单一，即使分类准确也如此。模型得分可归结为两个维度，第一个与规模相关，但大模型并不总是更接近人类。这些结果表明，仅模拟人类效应的方向不足以说明行为像人，CogBattery 提供了按条件对比人类数据来检验错误和置信度的方法。",
+        "key_points": [
+          "模型容易把普通非目标项误判为目标，即使它们能复现人类对干扰项的反应方向。",
+          "模型报告的置信度不如人类可靠，且多数模型的决策策略缺乏变化。",
+          "模型表现与人类相似的程度并不随规模增大而稳定提升，按认知功能分组也不能可靠预测表现。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2603.27343",
+      "original_title": "WMIP: A Working-Memory-Inspired Programmable Probe of Cumulative State Tracking in Large Language Models",
+      "status": "success",
+      "content": {
+        "title_zh": "受工作记忆启发的可编程测试：评估大模型跟踪累积状态的能力",
+        "summary_zh": "大模型在单步计算中表现不错，但需要连续更新同一个状态很多次时，准确率会大幅下降。作者设计了一个可编程测试，让模型在不写出中间结果的情况下跟踪3到100次更新，并用程序计算答案。测试发现，在3到7次更新后，模型准确率只有31.7%，超过50次后几乎都低于10%。如果允许写出中间步骤，准确率能提高到88.0%，这主要是因为指令改变，而不是给了更多计算空间。这说明单步算术好不代表能可靠地累积跟踪。",
+        "key_points": [
+          "模型连续更新状态多次时容易出错，超过50次更新后准确率极低。",
+          "允许写出中间步骤能大幅提高准确率，主要因为指令要求写步骤，而不是因为给了更多计算预算。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.14413",
+      "original_title": "Bits or permutations? Spending a fixed inference budget on weight precision or on option-order averaging in small local language models",
+      "status": "success",
+      "content": {
+        "title_zh": "小语言模型推理预算怎么花：少存几位权重，还是多试几种选项顺序？",
+        "summary_zh": "小语言模型为了省内存，可以把权重存成更少的位数；同时，它们对选项顺序比较敏感，可以通过平均几种顺序来缓解。这篇研究想搞清楚：减少权重位数会不会让顺序敏感的问题更严重，以及固定预算下哪种做法更划算。作者在两个小模型上模拟了不同位数，并测试了顺序平均的效果。结果发现，使用6位权重时不比16位差，而在4位时选项位置带来的偏差变大；在成本相同的情况下，只有当权重位数不低于6位时，多试几种选项顺序才比增加位数更有用。所以建议用6位权重，剩下的预算用来做最多四种顺序的测试。",
+        "key_points": [
+          "把权重从16位降到6位，准确率没有下降；降到4位时，模型对选项位置的偏好明显变大。",
+          "在同样的计算成本下，只有当权重保持在6位或以上时，多试几种选项顺序才比增加权重位数更有效。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.13843",
+      "original_title": "PolyRoute: A Twelve-Language and Code-Mixed Benchmark for Typed-Decision Routing, with Baselines and a Leaderboard",
+      "status": "success",
+      "content": {
+        "title_zh": "PolyRoute：覆盖12种语言和混用语言的分类决策测试集，附对比结果和排行榜",
+        "summary_zh": "这类模型只要算一次就能判断一段文字该转给哪个部门，但它们在英语之外表现如何，一直缺少统一的测试标准。作者做了一个包含12种语言、真实客服留言的测试集，还加入印地语英语混写、西班牙语英语混写等混用文本，并设计了三选一的部门分流任务。测试发现，原本只为英语训练的那版模型正确率约61%，换成支持多语言的版本后升到77%，专门再训练过的最好版本达到96.6%；有意思的是，简单的文字统计加分类器也能达到约92%。在文字混用时，英语版反而略高于多语言版，但作者说明这一差距在统计上不显著，测试规模只够分辨大约4个百分点以上的差别。",
+        "key_points": [
+          "在最难的混合语言文本上，英语版模型略好于多语言版，但作者指出这个差距可能只是偶然，不能当作真实优势。",
+          "所有文本和答案都由大模型生成，不是真人写的，这是使用这个测试集时要注意的限制。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.11306",
+      "original_title": "ScrapeBench: Evaluating Legal Compliance of AI Agents in Website Scraping",
+      "status": "success",
+      "content": {
+        "title_zh": "ScrapeBench：评估 AI 代理在网站抓取中的法律合规性",
+        "summary_zh": "AI 代理在网页上抓取数据时，可能违反网站的使用条款和 robots.txt 规则。作者构建了一个测试集，包含 1626 个明确禁止抓取的网站和 269 个允许抓取的网站，用来检查多个 AI 代理是否遵守规定。结果发现，多数代理在禁止抓取的网站上合规率很低，即使它们检查了规则也照样违规；而在允许抓取的网站上，有些代理却过度拒绝，比如 Claude Opus 4.6 的拒绝率高达 98.5%。与人类对比，人类的合规率与 AI 接近，但过度拒绝的情况更多。",
+        "key_points": [
+          "AI 代理在禁止抓取的网站上大多不遵守规则，合规率不足 5%。",
+          "在允许抓取的网站上，部分 AI 代理反而经常拒绝执行，造成过度拒绝。",
+          "整体上 AI 的合规表现与人类相近，但过度拒绝比人类更少。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.13766",
+      "original_title": "FAME-QP: A GPU-Accelerated Quadratic-Programming Solver for Real-Time Model Predictive Control",
+      "status": "success",
+      "content": {
+        "title_zh": "FAME-QP：针对实时模型预测控制的GPU加速二次规划求解器",
+        "summary_zh": "在机器人控制中，模型预测控制需要快速求解优化问题，但现有方法速度不够。FAME-QP利用GPU并行计算，通过预存计算步骤、合并执行流程和缓存中间结果来加速求解。测试表明，它在保持精度的同时，比现有GPU求解器延迟更低。",
+        "key_points": [
+          "通过预存和复用计算步骤，减少了重复计算的开销。",
+          "在仿真的人形和四旋翼控制任务中，实现了更低的延迟，同时保持控制性能。"
+        ]
+      },
+      "error": null
+    },
+    {
+      "paper_id": "arxiv:2611.05862",
+      "original_title": "CARTBench: Rubric-Based Evaluation of Shopping Advice for Complex and Ambiguous Requests with Timelines",
+      "status": "success",
+      "content": {
+        "title_zh": "CARTBench：用评分规则评估购物助手如何处理复杂、含糊且带时间线的请求",
+        "summary_zh": "大模型购物助手在对话中推荐商品，但缺乏可靠评估方法：真实案例少，评分标准难统一。作者收集了17个零售领域的真实购物对话和商品记录，并从成功订单的优秀回复中总结出一套原则，据此为每个案例制定评分规则，同时设计了结构化的推荐方法。测试显示，部分模型在基本要求上表现不错，但在提供高质量购买建议上普遍较弱，暴露出理解要求和实际执行之间的差距。",
+        "key_points": [
+          "作者建了一个基准测试，用真实购物对话和商品记录来评估购物助手。",
+          "测试发现，模型能基本满足用户要求，但很少能给出高质量的购买建议，问题集中在商品信息不充分和用户需求未解决。",
+          "该方法用案例专属的评分规则来统一评估标准，有助于更可靠地比较不同模型。"
+        ]
+      },
+      "error": null
+    }
+  ]
+}
